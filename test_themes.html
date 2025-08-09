@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Testing</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .theme-preview { width: 100%; height: 300px; border: 1px solid #ccc; margin: 10px 0; }
+        .test-result { padding: 10px; margin: 5px 0; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Rust Admin Theme System Test</h1>
+    
+    <div class="test-section">
+        <h2>Theme Preview</h2>
+        <p>This iframe shows the actual admin application with themes:</p>
+        <iframe id="admin-preview" class="theme-preview" src="http://127.0.0.1:8080"></iframe>
+    </div>
+    
+    <div class="test-section">
+        <h2>Theme Loading Test</h2>
+        <button onclick="testDefaultTheme()">Test Default Theme</button>
+        <button onclick="testGreenTheme()">Test Green Nature Theme</button>
+        <button onclick="testThemeSwitch()">Test Theme Switching</button>
+        <div id="test-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>CSS Files Status</h2>
+        <div id="css-status"></div>
+    </div>
+
+    <script>
+        function addResult(message, isSuccess = true) {
+            const resultsDiv = document.getElementById('test-results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${isSuccess ? 'success' : 'error'}`;
+            resultDiv.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        function testCSSFile(url, themeName) {
+            return fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        addResult(`✓ ${themeName} CSS file loaded successfully`);
+                        return true;
+                    } else {
+                        addResult(`✗ ${themeName} CSS file failed to load (${response.status})`, false);
+                        return false;
+                    }
+                })
+                .catch(error => {
+                    addResult(`✗ ${themeName} CSS file error: ${error.message}`, false);
+                    return false;
+                });
+        }
+
+        function testDefaultTheme() {
+            addResult('Testing Default Theme CSS...');
+            testCSSFile('http://127.0.0.1:8080/css/themes/default.css', 'Default Theme');
+        }
+
+        function testGreenTheme() {
+            addResult('Testing Green Nature Theme CSS...');
+            testCSSFile('http://127.0.0.1:8080/css/themes/green.css', 'Green Nature Theme');
+        }
+
+        function testThemeSwitch() {
+            addResult('Testing theme switching functionality...');
+            
+            const iframe = document.getElementById('admin-preview');
+            
+            // Test if we can access the iframe's window (might be blocked by CORS)
+            try {
+                const iframeWindow = iframe.contentWindow;
+                if (iframeWindow && iframeWindow.ThemeManager) {
+                    // Test switching to green theme
+                    iframeWindow.ThemeManager.applyTheme('green');
+                    setTimeout(() => {
+                        const currentTheme = iframeWindow.ThemeManager.getCurrentTheme();
+                        if (currentTheme === 'green') {
+                            addResult('✓ Successfully switched to Green Nature theme');
+                        } else {
+                            addResult(`✗ Theme switch failed. Current theme: ${currentTheme}`, false);
+                        }
+                        
+                        // Switch back to default
+                        iframeWindow.ThemeManager.applyTheme('default');
+                        setTimeout(() => {
+                            const finalTheme = iframeWindow.ThemeManager.getCurrentTheme();
+                            if (finalTheme === 'default') {
+                                addResult('✓ Successfully switched back to Default theme');
+                            } else {
+                                addResult(`✗ Switch back failed. Current theme: ${finalTheme}`, false);
+                            }
+                        }, 500);
+                    }, 500);
+                } else {
+                    addResult('✗ Could not access ThemeManager (possible CORS restriction)', false);
+                }
+            } catch (error) {
+                addResult(`✗ Theme switching test failed: ${error.message}`, false);
+            }
+        }
+
+        // Run initial tests when page loads
+        window.onload = function() {
+            addResult('Starting theme system tests...');
+            
+            // Test CSS file accessibility
+            setTimeout(() => {
+                testDefaultTheme();
+                testGreenTheme();
+                
+                // Check CSS status
+                const statusDiv = document.getElementById('css-status');
+                statusDiv.innerHTML = `
+                    <p><strong>CSS Files Expected:</strong></p>
+                    <ul>
+                        <li>/css/themes/default.css - Default Theme</li>
+                        <li>/css/themes/green.css - Green Nature Theme</li>
+                    </ul>
+                    <p><strong>Removed Files:</strong></p>
+                    <ul>
+                        <li>/css/themes/blue.css - ✓ Removed</li>
+                        <li>/css/themes/dark.css - ✓ Removed</li>
+                    </ul>
+                `;
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

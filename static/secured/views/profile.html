@@ -1,0 +1,377 @@
+{% extends "secured/template/base.html" %}
+
+{% block title %}
+<div>
+    <h1><i class="bi bi-person-circle"></i> Profile</h1>
+    <p>Manage your account information</p>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Left Column - Profile Information -->
+    <div class="col-12 col-lg-8">
+        <div class="tile">
+            <div class="tile-title-w-btn">
+                <h3 class="title">Profile Information</h3>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-sm" id="editProfileBtn">
+                        <i class="bi bi-pencil me-1"></i>Edit Profile
+                    </button>
+                </div>
+            </div>
+            <div class="tile-body">
+                <form id="profileForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input class="form-control" type="text" name="fullName" value="John Doe" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email Address</label>
+                            <input class="form-control" type="email" name="email" value="john.doe@example.com" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone Number</label>
+                            <input class="form-control" type="tel" name="phone" value="+1 (555) 123-4567" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Role</label>
+                            <input class="form-control" type="text" name="role" value="Administrator" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Department</label>
+                            <input class="form-control" type="text" name="department" value="IT Department" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Join Date</label>
+                            <input class="form-control" type="text" name="joinDate" value="January 15, 2023" readonly>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Bio</label>
+                            <textarea class="form-control" name="bio" rows="3" readonly>Experienced administrator with expertise in system management and user coordination. Passionate about technology and team collaboration.</textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" name="address" rows="2" readonly>123 Main Street, Suite 100, New York, NY 10001</textarea>
+                        </div>
+                    </div>
+                    <div class="tile-footer mt-3" id="formActions" style="display: none;">
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="bi bi-check-circle me-1"></i>Save Changes
+                            </button>
+                            <button class="btn btn-secondary" type="button" id="cancelEdit">
+                                <i class="bi bi-x-circle me-1"></i>Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Security Settings -->
+        <div class="tile mt-4">
+            <h3 class="tile-title">Security Settings</h3>
+            <div class="tile-body">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <h5>Change Password</h5>
+                        <form id="passwordForm">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Current Password</label>
+                                    <input class="form-control" type="password" name="currentPassword" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">New Password</label>
+                                    <input class="form-control" type="password" name="newPassword" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input class="form-control" type="password" name="confirmPassword" required>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-warning" type="submit">
+                                        <i class="bi bi-shield-lock me-1"></i>Update Password
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column - Profile Picture & Quick Info -->
+    <div class="col-12 col-lg-4">
+        <div class="tile">
+            <div class="tile-body text-center">
+                <div class="position-relative d-inline-block mb-3">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" 
+                         alt="Profile Picture" 
+                         class="rounded-circle border" 
+                         style="width: 150px; height: 150px; object-fit: cover;">
+                    <button class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle" 
+                            style="width: 35px; height: 35px;" 
+                            title="Change Photo">
+                        <i class="bi bi-camera"></i>
+                    </button>
+                </div>
+                <h4>John Doe</h4>
+                <p class="text-muted">Administrator</p>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-envelope me-1"></i>Send Message
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-download me-1"></i>Download Resume
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="tile mt-4">
+            <h5 class="tile-title">Account Statistics</h5>
+            <div class="tile-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="widget-small info">
+                            <div class="info">
+                                <h4>245</h4>
+                                <p><small>Days Active</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="widget-small warning">
+                            <div class="info">
+                                <h4>1,247</h4>
+                                <p><small>Actions</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="widget-small primary">
+                            <div class="info">
+                                <h4>98%</h4>
+                                <p><small>Uptime</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="widget-small success">
+                            <div class="info">
+                                <h4>24</h4>
+                                <p><small>Projects</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="tile mt-4">
+            <h5 class="tile-title">Recent Activity</h5>
+            <div class="tile-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Profile Updated</h6>
+                            <p class="timeline-text">Updated contact information</p>
+                            <small class="text-muted">2 hours ago</small>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-success"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Login</h6>
+                            <p class="timeline-text">Successful login from Chrome</p>
+                            <small class="text-muted">1 day ago</small>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-info"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Password Changed</h6>
+                            <p class="timeline-text">Security update completed</p>
+                            <small class="text-muted">3 days ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Profile edit functionality
+    (function() {
+        'use strict';
+        
+        const editBtn = document.getElementById('editProfileBtn');
+        const cancelBtn = document.getElementById('cancelEdit');
+        const formActions = document.getElementById('formActions');
+        const profileForm = document.getElementById('profileForm');
+        const formInputs = profileForm.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+        
+        // Edit profile toggle
+        editBtn.addEventListener('click', function() {
+            const isEditing = editBtn.textContent.includes('Edit');
+            
+            if (isEditing) {
+                // Enable editing
+                formInputs.forEach(input => {
+                    if (input.name !== 'role' && input.name !== 'joinDate') {
+                        input.removeAttribute('readonly');
+                        input.classList.add('border-primary');
+                    }
+                });
+                editBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel Edit';
+                editBtn.classList.remove('btn-primary');
+                editBtn.classList.add('btn-secondary');
+                formActions.style.display = 'block';
+            } else {
+                // Cancel editing
+                cancelEdit();
+            }
+        });
+        
+        // Cancel edit
+        function cancelEdit() {
+            formInputs.forEach(input => {
+                input.setAttribute('readonly', true);
+                input.classList.remove('border-primary');
+            });
+            editBtn.innerHTML = '<i class="bi bi-pencil me-1"></i>Edit Profile';
+            editBtn.classList.remove('btn-secondary');
+            editBtn.classList.add('btn-primary');
+            formActions.style.display = 'none';
+        }
+        
+        cancelBtn.addEventListener('click', cancelEdit);
+        
+        // Profile form submission
+        profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate API call
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Saving...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                cancelEdit();
+                
+                // Show success message
+                alert('Profile updated successfully!');
+            }, 1500);
+        });
+        
+        // Password form submission
+        const passwordForm = document.getElementById('passwordForm');
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newPassword = this.newPassword.value;
+            const confirmPassword = this.confirmPassword.value;
+            
+            if (newPassword !== confirmPassword) {
+                alert('New password and confirm password do not match!');
+                return;
+            }
+            
+            if (newPassword.length < 8) {
+                alert('Password must be at least 8 characters long!');
+                return;
+            }
+            
+            // Simulate API call
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Updating...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                this.reset();
+                
+                // Show success message
+                alert('Password updated successfully!');
+            }, 1500);
+        });
+    })();
+</script>
+
+<style>
+    .timeline {
+        position: relative;
+        padding-left: 20px;
+    }
+    
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 25px;
+    }
+    
+    .timeline-marker {
+        position: absolute;
+        left: -8px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: -2px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #e9ecef;
+    }
+    
+    .timeline-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+        font-weight: 600;
+    }
+    
+    .timeline-text {
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+        color: #6c757d;
+    }
+    
+    .widget-small .info {
+        padding: 0.5rem;
+    }
+    
+    .widget-small .info h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
+        font-weight: 700;
+    }
+    
+    .widget-small .info p {
+        margin-bottom: 0;
+        font-size: 0.75rem;
+    }
+</style>
+{% endblock %}

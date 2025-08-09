@@ -1,10 +1,10 @@
 mod middlewares;
+mod theme;
+mod config;
 
 use actix_files::Files;
 use actix_web::cookie::Cookie;
-use actix_web::{guard, http, web, App, HttpResponse, HttpServer, Error, HttpRequest};
-use actix_web::dev::{Service, ServiceRequest, Transform};
-use actix_web::error::ErrorInternalServerError;
+use actix_web::{web, App, HttpResponse, HttpServer, Error, HttpRequest, http};
 use askama::Template;
 use serde::Deserialize;
 
@@ -42,6 +42,19 @@ struct UsersTemplate;
 #[template(path = "secured/views/users/new-user.html")]
 struct NewUserTemplate;
 
+
+#[derive(Template)]
+#[template(path = "secured/views/profile.html")]
+struct ProfileTemplate;
+
+#[derive(Template)]
+#[template(path = "secured/views/notifications.html")]
+struct NotificationsTemplate;
+
+#[derive(Template)]
+#[template(path = "secured/views/theme-settings.html")]
+struct ThemeSettingsTemplate;
+
 #[derive(Template)]
 #[template(path = "errors/404.html")]
 struct NotFoundTemplate;
@@ -64,6 +77,9 @@ async fn main() -> std::io::Result<()> {
             // users routes
             .service(web::resource("/users").route(web::get().to(users)))
             .service(web::resource("/users/new-user").route(web::get().to(user_new)))
+            .service(web::resource("/profile").route(web::get().to(render_profile)))
+            .service(web::resource("/notifications").route(web::get().to(render_notifications)))
+            .service(web::resource("/theme-settings").route(web::get().to(theme_settings)))
             // static resource
             .service(Files::new("/css", "./static/css"))
             .service(Files::new("/js", "./static/js"))
@@ -72,7 +88,7 @@ async fn main() -> std::io::Result<()> {
 
 
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("127.0.0.1", 8181))?
     .run()
     .await
 }
@@ -132,5 +148,20 @@ async fn users() -> Result<HttpResponse, Error> {
 
 async fn user_new() ->  Result<HttpResponse, Error> {
     let s = NewUserTemplate.render().unwrap();
+    Ok(HttpResponse::Ok().body(s))
+}
+
+async fn render_profile() ->  Result<HttpResponse, Error> {
+    let s = ProfileTemplate.render().unwrap();
+    Ok(HttpResponse::Ok().body(s))
+}
+
+async fn render_notifications() ->  Result<HttpResponse, Error> {
+    let s = NotificationsTemplate.render().unwrap();
+    Ok(HttpResponse::Ok().body(s))
+}
+
+async fn theme_settings() -> Result<HttpResponse, Error> {
+    let s = ThemeSettingsTemplate.render().unwrap();
     Ok(HttpResponse::Ok().body(s))
 }

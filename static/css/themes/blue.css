@@ -1,0 +1,627 @@
+/* Blue Corporate Theme - Inspired by Machbank.com */
+/* Professional banking color scheme with modern design elements */
+
+/* Bootstrap CSS Variables Override */
+:root {
+    /* Primary Blue Colors - Based on Machbank */
+    --bs-primary: #1e3a8a;        /* Deep corporate blue */
+    --bs-primary-rgb: 30, 58, 138;
+    --bs-secondary: #1e40af;      /* Medium blue */
+    --bs-secondary-rgb: 30, 64, 175;
+    --bs-success: #059669;        /* Professional green */
+    --bs-success-rgb: 5, 150, 105;
+    --bs-info: #0ea5e9;          /* Light blue */
+    --bs-info-rgb: 14, 165, 233;
+    --bs-warning: #d97706;        /* Orange accent */
+    --bs-warning-rgb: 217, 119, 6;
+    --bs-danger: #dc2626;         /* Red accent */
+    --bs-danger-rgb: 220, 38, 38;
+    --bs-light: #f8fafc;         /* Light gray */
+    --bs-light-rgb: 248, 250, 252;
+    --bs-dark: #1e293b;          /* Dark blue-gray */
+    --bs-dark-rgb: 30, 41, 59;
+
+    /* Banking Theme Specific Colors */
+    --mbl-blue-primary: #1e3a8a;
+    --mbl-blue-secondary: #3b82f6;
+    --mbl-blue-light: #dbeafe;
+    --mbl-blue-dark: #1e40af;
+    --mbl-accent: #ed1c24;        /* Machbank red accent */
+    --mbl-gold: #f59e0b;         /* Banking gold */
+    
+    /* Text Colors */
+    --bs-body-color: #1e293b;
+    --bs-body-bg: #ffffff;
+    --bs-link-color: #1e3a8a;
+    --bs-link-hover-color: #1e40af;
+    
+    /* Border and Background */
+    --bs-border-color: #e2e8f0;
+    --bs-gray-100: #f1f5f9;
+    --bs-gray-200: #e2e8f0;
+    --bs-gray-300: #cbd5e1;
+    --bs-gray-400: #94a3b8;
+    --bs-gray-500: #64748b;
+    
+    /* Banking Gradients */
+    --mbl-gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    --mbl-gradient-secondary: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    --mbl-gradient-accent: linear-gradient(135deg, #1e3a8a 0%, #ed1c24 100%);
+}
+
+/* Header and Navigation */
+.app-header {
+    background: var(--mbl-gradient-primary);
+    border-bottom: 3px solid var(--mbl-accent);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.15);
+}
+
+.app-header__logo {
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.app-header__logo:hover {
+    color: var(--mbl-blue-light) !important;
+    transform: scale(1.05);
+}
+
+/* Navigation Items */
+.app-nav__item {
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin: 0 0.25rem;
+}
+
+.app-nav__item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--mbl-blue-light) !important;
+    transform: translateY(-2px);
+}
+
+/* Sidebar */
+.app-sidebar {
+    background: linear-gradient(180deg, #1e3a8a 0%, #1e293b 100%);
+    border-right: 3px solid var(--mbl-accent);
+    box-shadow: 4px 0 15px rgba(30, 58, 138, 0.1);
+}
+
+/* Sidebar User Section */
+.app-sidebar__user {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 2px solid var(--mbl-accent);
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.app-sidebar__user-name {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.app-sidebar__user-designation {
+    color: var(--mbl-blue-light);
+    font-size: 0.875rem;
+}
+
+/* Menu Items */
+.app-menu__item {
+    color: #ffffff !important;
+    border-radius: 8px;
+    margin: 0.25rem 0.75rem;
+    padding: 0.875rem 1rem;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.app-menu__item:hover,
+.app-menu__item.active {
+    background: var(--mbl-gradient-secondary);
+    color: #ffffff !important;
+    border-left: 3px solid var(--mbl-accent);
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+
+.app-menu__icon {
+    color: var(--mbl-blue-light);
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* Buttons - Banking Style */
+.btn-primary {
+    background: var(--mbl-gradient-primary);
+    border: 2px solid var(--mbl-blue-primary);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+}
+
+.btn-primary:hover {
+    background: var(--mbl-gradient-secondary);
+    border-color: var(--mbl-blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.35);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+    border: 2px solid #64748b;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    border: 2px solid #059669;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--mbl-accent) 0%, #b91c1c 100%);
+    border: 2px solid var(--mbl-accent);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(237, 28, 36, 0.25);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    border: 2px solid #0ea5e9;
+    color: #ffffff;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, var(--mbl-gold) 0%, #d97706 100%);
+    border: 2px solid var(--mbl-gold);
+    color: #ffffff;
+}
+
+/* Cards and Widgets - Banking Style */
+.tile,
+.card {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.08);
+    background: #ffffff;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.tile:hover,
+.card:hover {
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.15);
+    transform: translateY(-3px);
+}
+
+.tile-title,
+.card-header {
+    background: var(--mbl-gradient-primary);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    margin: 0;
+    border-bottom: 2px solid var(--mbl-accent);
+}
+
+.tile-body,
+.card-body {
+    padding: 1.5rem;
+}
+
+.tile-footer,
+.card-footer {
+    background: var(--bs-gray-100);
+    border-top: 1px solid var(--bs-border-color);
+    padding: 1rem 1.5rem;
+}
+
+/* Forms - Banking Professional Style */
+.form-control {
+    border: 2px solid var(--bs-border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.form-control:focus {
+    border-color: var(--mbl-blue-primary);
+    box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.15);
+    background: #ffffff;
+}
+
+.form-label {
+    color: var(--mbl-blue-dark);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-select {
+    border: 2px solid var(--bs-border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+}
+
+.form-select:focus {
+    border-color: var(--mbl-blue-primary);
+    box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.15);
+}
+
+/* Tables - Banking Data Style */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.08);
+}
+
+.table thead th {
+    background: var(--mbl-gradient-primary);
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid var(--mbl-accent);
+}
+
+.table tbody tr:nth-child(even) {
+    background: var(--bs-gray-100);
+}
+
+.table tbody tr:hover {
+    background: var(--mbl-blue-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.table tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--bs-border-color);
+    vertical-align: middle;
+}
+
+/* Alerts - Banking Status Colors */
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.alert-primary {
+    background: linear-gradient(135deg, var(--mbl-blue-light) 0%, #dbeafe 100%);
+    color: var(--mbl-blue-dark);
+    border-left: 4px solid var(--mbl-blue-primary);
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    color: #065f46;
+    border-left: 4px solid #059669;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+    color: #991b1b;
+    border-left: 4px solid var(--mbl-accent);
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+    border-left: 4px solid var(--mbl-gold);
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1e40af;
+    border-left: 4px solid #3b82f6;
+}
+
+/* Pagination - Banking Style */
+.pagination .page-link {
+    color: var(--mbl-blue-primary);
+    border: 2px solid var(--bs-border-color);
+    padding: 0.75rem 1rem;
+    margin: 0 0.125rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.pagination .page-link:hover {
+    background: var(--mbl-blue-light);
+    border-color: var(--mbl-blue-primary);
+    transform: translateY(-2px);
+}
+
+.pagination .page-item.active .page-link {
+    background: var(--mbl-gradient-primary);
+    border-color: var(--mbl-blue-primary);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    background: var(--bs-gray-100);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--bs-border-color);
+}
+
+.breadcrumb-item a {
+    color: var(--mbl-blue-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--mbl-blue-dark);
+}
+
+.breadcrumb-item.active {
+    color: var(--mbl-blue-dark);
+    font-weight: 600;
+}
+
+/* Dropdowns */
+.dropdown-menu {
+    border: 2px solid var(--bs-border-color);
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.15);
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    padding: 0.75rem 1.5rem;
+    color: var(--bs-body-color);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background: var(--mbl-blue-light);
+    color: var(--mbl-blue-dark);
+    transform: translateX(5px);
+}
+
+.dropdown-header {
+    background: var(--mbl-gradient-primary);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    margin: 0;
+}
+
+/* Banking Specific Enhancements */
+.app-title {
+    background: var(--bs-gray-100);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--mbl-blue-primary);
+    margin-bottom: 2rem;
+}
+
+.app-title h1 {
+    color: var(--mbl-blue-dark);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Input Groups */
+.input-group-text {
+    background: var(--mbl-gradient-primary);
+    color: #ffffff;
+    border: 2px solid var(--mbl-blue-primary);
+    font-weight: 600;
+}
+
+/* Banking Statistics/Numbers */
+.stat-card {
+    background: var(--mbl-gradient-primary);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(30, 58, 138, 0.3);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--mbl-blue-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Modals */
+.modal-header {
+    background: var(--mbl-gradient-primary);
+    color: #ffffff;
+    border-bottom: 2px solid var(--mbl-accent);
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-footer {
+    background: var(--bs-gray-100);
+    border-top: 1px solid var(--bs-border-color);
+}
+
+/* Progress Bars */
+.progress {
+    height: 1rem;
+    border-radius: 10px;
+    background: var(--bs-gray-200);
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: var(--mbl-gradient-primary);
+    transition: all 0.6s ease;
+}
+
+/* Theme Toggle Animation */
+.theme-transition {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Banking Professional Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bs-gray-100);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--mbl-gradient-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--mbl-gradient-secondary);
+}
+
+/* Responsive Banking Design */
+@media (max-width: 768px) {
+    .app-header__logo {
+        font-size: 1.25rem;
+    }
+    
+    .tile-title,
+    .card-header {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}
+
+/* Banking Animation Effects */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Professional Focus States */
+*:focus {
+    outline: 2px solid var(--mbl-blue-primary);
+    outline-offset: 2px;
+}
+
+/* Banking Professional Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--mbl-blue-dark);
+    font-weight: 600;
+}
+
+.text-primary {
+    color: var(--mbl-blue-primary) !important;
+}
+
+.bg-primary {
+    background: var(--mbl-gradient-primary) !important;
+}
+
+/* Banking Professional Links */
+a {
+    color: var(--mbl-blue-primary);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--mbl-blue-dark);
+}
+
+/* Professional Badge Styles */
+.badge {
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+}
+
+.badge-primary {
+    background: var(--mbl-gradient-primary);
+    color: #ffffff;
+}
+
+.badge-success {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: #ffffff;
+}
+
+.badge-danger {
+    background: linear-gradient(135deg, var(--mbl-accent) 0%, #b91c1c 100%);
+    color: #ffffff;
+}
+
+/* Banking Professional List Groups */
+.list-group-item {
+    border: 1px solid var(--bs-border-color);
+    padding: 1rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background: var(--mbl-blue-light);
+    border-color: var(--mbl-blue-primary);
+    transform: translateX(5px);
+}
+
+.list-group-item.active {
+    background: var(--mbl-gradient-primary);
+    border-color: var(--mbl-blue-primary);
+    color: #ffffff;
+}

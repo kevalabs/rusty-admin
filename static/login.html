@@ -1,79 +1,1246 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="default">
   <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" type="text/css">
+    <!-- Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="theme-css">
     <!-- Font-icon css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
-    <title>Login - Vali Admin</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Niconne:wght@400&display=swap" rel="stylesheet">
+    <title>Login - Rusty Admin</title>
+    <style>
+      /* Themeable Login Page Styles */
+      .login-enhanced {
+        min-height: 100vh;
+        background: var(--theme-login-bg, linear-gradient(135deg, var(--theme-primary, #667eea) 0%, var(--theme-primary-dark, #764ba2) 100%));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s ease;
+      }
+      
+      /* Theme-specific background patterns */
+      [data-theme="default"] .login-enhanced {
+        background: linear-gradient(135deg, #00695C 0%, #004d42 100%);
+      }
+      
+      [data-theme="blue"] .login-enhanced {
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+      }
+      
+      [data-theme="green"] .login-enhanced {
+        background: linear-gradient(135deg, #198754 0%, #157347 100%);
+      }
+      
+      [data-theme="dark"] .login-enhanced {
+        background: linear-gradient(135deg, #212529 0%, #343a40 100%);
+      }
+      
+      [data-theme="purple"] .login-enhanced {
+        background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+      }
+      
+      [data-theme="orange"] .login-enhanced {
+        background: linear-gradient(135deg, #fd7e14 0%, #e8590c 100%);
+      }
+      
+      [data-theme="pink"] .login-enhanced {
+        background: linear-gradient(135deg, #d63384 0%, #b02a5b 100%);
+      }
+      
+      [data-theme="cyan"] .login-enhanced {
+        background: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%);
+      }
+      
+      [data-theme="stripe"] .login-enhanced {
+        background: linear-gradient(135deg, #635bff 0%, #7c73ff 50%, #00d4ff 100%);
+      }
+      
+      .login-enhanced::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+      
+      .login-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2);
+        position: relative;
+        z-index: 1;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+      
+      /* Dark mode container */
+      [data-theme="dark"] .login-container {
+        background: rgba(33, 37, 41, 0.95);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      [data-theme="dark"] .form-input-enhanced {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+      }
+      
+      [data-theme="dark"] .form-label-enhanced {
+        color: #e9ecef;
+      }
+      
+      [data-theme="dark"] .login-title {
+        color: #ffffff;
+      }
+      
+      [data-theme="dark"] .login-subtitle {
+        color: #adb5bd;
+      }
+      
+      .login-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      
+      .login-logo {
+        width: 60px;
+        height: 60px;
+        background: var(--theme-primary, linear-gradient(135deg, #00695C, #004d40));
+        border-radius: 16px;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(var(--theme-primary-rgb, 0, 105, 92), 0.3);
+        transition: all 0.3s ease;
+      }
+      
+      .login-logo i {
+        color: white;
+        font-size: 24px;
+      }
+      
+      .login-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--theme-text-primary, #1a202c);
+        margin: 0 0 0.5rem 0;
+        letter-spacing: -0.025em;
+      }
+      
+      .login-subtitle {
+        color: var(--theme-text-secondary, #718096);
+        font-size: 16px;
+        margin: 0;
+        font-weight: 400;
+      }
+      
+      .form-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+      
+      .form-label-enhanced {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--theme-text-primary, #374151);
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.025em;
+      }
+      
+      .form-input-enhanced {
+        width: 100%;
+        padding: 12px 16px 12px 48px;
+        border: 2px solid var(--theme-border-color, #e2e8f0);
+        border-radius: 12px;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        background: var(--theme-content-bg, #ffffff);
+        color: var(--theme-text-primary, #1a202c);
+        font-family: 'Inter', sans-serif;
+      }
+      
+      .form-input-enhanced:focus {
+        outline: none;
+        border-color: var(--theme-primary, #00695C);
+        box-shadow: 0 0 0 3px rgba(var(--theme-primary-rgb, 0, 105, 92), 0.1);
+        transform: translateY(-1px);
+      }
+      
+      .input-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--theme-text-muted, #9ca3af);
+        font-size: 18px;
+        z-index: 1;
+        transition: color 0.2s ease;
+      }
+      
+      .form-input-enhanced:focus + .input-icon {
+        color: var(--theme-primary, #00695C);
+      }
+      
+      .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1.5rem 0;
+      }
+      
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+      }
+      
+      .checkbox-enhanced {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        accent-color: var(--theme-primary, #00695C);
+      }
+      
+      .checkbox-label {
+        font-size: 14px;
+        color: var(--theme-text-secondary, #4a5568);
+        font-weight: 500;
+      }
+      
+      .forgot-link {
+        color: var(--theme-primary, #00695C);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: color 0.2s ease;
+      }
+      
+      .forgot-link:hover {
+        color: var(--theme-primary-dark, #004d40);
+        text-decoration: underline;
+      }
+      
+      .login-btn {
+        width: 100%;
+        background: var(--theme-primary, linear-gradient(135deg, #00695C, #004d40));
+        color: white;
+        border: none;
+        padding: 14px 24px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 1.5rem;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 0.025em;
+      }
+      
+      .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(var(--theme-primary-rgb, 0, 105, 92), 0.3);
+      }
+      
+      .login-btn:active {
+        transform: translateY(0);
+      }
+      
+      .error-message {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #dc2626;
+        padding: 12px 16px;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      
+      /* Theme Selector Styles */
+      .theme-selector {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+      
+      .theme-toggle {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        color: #374151;
+      }
+      
+      [data-theme="dark"] .theme-toggle {
+        background: rgba(33, 37, 41, 0.9);
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      .theme-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        background: rgba(255, 255, 255, 1);
+      }
+      
+      [data-theme="dark"] .theme-toggle:hover {
+        background: rgba(33, 37, 41, 1);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+      }
+      
+      .theme-dropdown {
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 12px;
+        padding: 8px;
+        min-width: 180px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        display: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      [data-theme="dark"] .theme-dropdown {
+        background: rgba(33, 37, 41, 0.95);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      .theme-dropdown.show {
+        display: block;
+        animation: dropdownFadeIn 0.2s ease;
+      }
+      
+      @keyframes dropdownFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .theme-option {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--theme-text-primary, #374151);
+        font-size: 14px;
+        font-weight: 500;
+      }
+      
+      [data-theme="dark"] .theme-option {
+        color: #ffffff;
+      }
+      
+      .theme-option:hover {
+        background: rgba(0, 0, 0, 0.05);
+        transform: translateX(4px);
+      }
+      
+      [data-theme="dark"] .theme-option:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      
+      .theme-option.active {
+        background: var(--theme-primary, #00695C);
+        color: white;
+      }
+      
+      .theme-color {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Theme colors */
+      .theme-color.default { background: linear-gradient(135deg, #00695C, #004d42); }
+      .theme-color.blue { background: linear-gradient(135deg, #0d6efd, #0b5ed7); }
+      .theme-color.green { background: linear-gradient(135deg, #198754, #157347); }
+      .theme-color.dark { background: linear-gradient(135deg, #212529, #343a40); }
+      .theme-color.purple { background: linear-gradient(135deg, #6f42c1, #5a32a3); }
+      .theme-color.orange { background: linear-gradient(135deg, #fd7e14, #e8590c); }
+      .theme-color.pink { background: linear-gradient(135deg, #d63384, #b02a5b); }
+      .theme-color.cyan { background: linear-gradient(135deg, #0dcaf0, #0aa2c0); }
+      .theme-color.stripe { background: linear-gradient(135deg, #635bff, #7c73ff); }
+      
+      /* SSO Button Styles */
+      .sso-section {
+        margin: 1.5rem 0;
+      }
+      
+      .sso-title {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--theme-text-secondary, #718096);
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      .sso-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .sso-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border: 2px solid var(--theme-border-color, #e5e7eb);
+        border-radius: 12px;
+        background: white;
+        color: var(--theme-text-primary, #374151);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .sso-btn:hover {
+        border-color: var(--theme-primary, #00695C);
+        background: var(--theme-content-bg, #f9fafb);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: var(--theme-text-primary, #374151);
+      }
+      
+      .sso-btn:active {
+        transform: translateY(0);
+      }
+      
+      /* Dark mode SSO buttons */
+      [data-theme="dark"] .sso-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+      }
+      
+      [data-theme="dark"] .sso-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #ffffff;
+      }
+      
+      /* Specific SSO provider styles */
+      .sso-btn.google {
+        border-color: #ea4335;
+      }
+      
+      .sso-btn.google:hover {
+        border-color: #ea4335;
+        background: #fef7f0;
+      }
+      
+      .sso-btn.microsoft {
+        border-color: #0078d4;
+      }
+      
+      .sso-btn.microsoft:hover {
+        border-color: #0078d4;
+        background: #f3f9ff;
+      }
+      
+      .sso-btn.github {
+        border-color: #24292e;
+      }
+      
+      .sso-btn.github:hover {
+        border-color: #24292e;
+        background: #f6f8fa;
+      }
+      
+      .sso-btn.okta {
+        border-color: #007dc1;
+      }
+      
+      .sso-btn.okta:hover {
+        border-color: #007dc1;
+        background: #f0f8ff;
+      }
+      
+      .sso-icon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .sso-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+      
+      /* Divider styles */
+      .divider {
+        text-align: center;
+        margin: 2rem 0 1.5rem 0;
+        position: relative;
+        color: var(--theme-text-muted, #9ca3af);
+        font-size: 14px;
+        font-weight: 500;
+      }
+      
+      .divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--theme-border-color, #e5e7eb);
+      }
+      
+      .divider span {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 0 1rem;
+        position: relative;
+        z-index: 1;
+      }
+      
+      [data-theme="dark"] .divider span {
+        background: rgba(33, 37, 41, 0.95);
+      }
+      
+      /* Loading state for SSO buttons */
+      .sso-btn.loading {
+        pointer-events: none;
+        opacity: 0.7;
+      }
+      
+      .sso-btn.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid transparent;
+        border-top: 2px solid var(--theme-primary, #00695C);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      .footer-text {
+        text-align: center;
+        color: var(--theme-text-muted, #9ca3af);
+        font-size: 13px;
+        margin-top: 1.5rem;
+      }
+      
+      .footer-text a {
+        color: var(--theme-primary, #00695C);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .footer-text a:hover {
+        text-decoration: underline;
+      }
+      
+      @media (max-width: 480px) {
+        .login-container {
+          padding: 2rem 1.5rem;
+          margin: 1rem;
+          max-width: none;
+          border-radius: 16px;
+        }
+        
+        .login-title {
+          font-size: 24px;
+        }
+        
+        .form-input-enhanced {
+          padding: 12px 16px 12px 44px;
+          font-size: 16px;
+        }
+        
+        .theme-selector {
+          top: 10px;
+          right: 10px;
+        }
+      }
+      
+      /* Loading state for button */
+      .login-btn.loading {
+        pointer-events: none;
+        opacity: 0.8;
+      }
+      
+      .login-btn.loading::after {
+        content: '';
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-left: 8px;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
-  <body>
-    <section class="material-half-bg">
-      <div class="cover"></div>
-    </section>
-    <section class="login-content">
-      <div class="logo">
-        <h1>Rust and Htmx</h1>
+  <body class="login-enhanced">
+    <!-- Theme Selector -->
+    <div class="theme-selector">
+      <button class="theme-toggle" onclick="toggleThemeDropdown()">
+        <i class="bi bi-palette"></i>
+      </button>
+      <div class="theme-dropdown" id="themeDropdown">
+        <div class="theme-option active" data-theme="default">
+          <div class="theme-color default"></div>
+          <span>Default</span>
+        </div>
+        <div class="theme-option" data-theme="blue">
+          <div class="theme-color blue"></div>
+          <span>Blue Corporate</span>
+        </div>
+        <div class="theme-option" data-theme="green">
+          <div class="theme-color green"></div>
+          <span>Green Nature</span>
+        </div>
+        <div class="theme-option" data-theme="dark">
+          <div class="theme-color dark"></div>
+          <span>Dark Mode</span>
+        </div>
+        <div class="theme-option" data-theme="purple">
+          <div class="theme-color purple"></div>
+          <span>Purple</span>
+        </div>
+        <div class="theme-option" data-theme="orange">
+          <div class="theme-color orange"></div>
+          <span>Orange</span>
+        </div>
+        <div class="theme-option" data-theme="pink">
+          <div class="theme-color pink"></div>
+          <span>Pink</span>
+        </div>
+        <div class="theme-option" data-theme="cyan">
+          <div class="theme-color cyan"></div>
+          <span>Cyan</span>
+        </div>
+        <div class="theme-option" data-theme="stripe">
+          <div class="theme-color stripe"></div>
+          <span>Stripe</span>
+        </div>
       </div>
-      <div class="login-box">
-        <form action="" class="login-form" method="post">
-          <h4 class="login-head"><i class="bi bi-person me-2"></i>SIGN IN</h4>
-          {% if let Some(msg) = error_message %}
-            <h6 style="text-align: center;color: red;">
-             {{ msg }}
-            </h6>
-          {% endif %}
+    </div>
 
-          <div class="mb-3">
-            <label class="form-label">USERNAME</label>
-            <input autofocus class="form-control" name="username" placeholder="Email" type="text" value="{{username}}">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">PASSWORD</label>
-            <input class="form-control" name="password" placeholder="Password" type="password">
-          </div>
-          <div class="mb-3">
-            <div class="utility">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox"><span class="label-text">Stay Signed in</span>
-                </label>
-              </div>
-              <p class="semibold-text mb-2"><a data-toggle="flip" href="#">Forgot Password ?</a></p>
-            </div>
-          </div>
-          <div class="mb-3 btn-container d-grid">
-            <button class="btn btn-primary btn-block"><i class="bi bi-box-arrow-in-right me-2 fs-5"></i>SIGN IN</button>
-          </div>
-        </form>
-        <form action="home" class="forget-form">
-          <h3 class="login-head"><i class="bi bi-person-lock me-2"></i>Forgot Password ?</h3>
-          <div class="mb-3">
-            <label class="form-label">EMAIL</label>
-            <input class="form-control" placeholder="Email" type="text">
-          </div>
-          <div class="mb-3 btn-container d-grid">
-            <button class="btn btn-primary btn-block"><i class="bi bi-unlock me-2 fs-5"></i>RESET</button>
-          </div>
-          <div class="mb-3 mt-3">
-            <p class="semibold-text mb-0"><a data-toggle="flip" href="#"><i class="bi bi-chevron-left me-1"></i> Back to Login</a></p>
-          </div>
-        </form>
+    <div class="login-container">
+      <div class="login-header">
+        <div class="login-logo">
+          <i class="bi bi-shield-lock"></i>
+        </div>
+        <h1 class="login-title">Welcome Back</h1>
+        <p class="login-subtitle">Sign in to your Rusty Admin account</p>
       </div>
-    </section>
+
+      <form action="" class="login-form-enhanced" method="post">
+        {% if let Some(msg) = error_message %}
+          <div class="error-message">
+            <i class="bi bi-exclamation-triangle"></i>
+            {{ msg }}
+          </div>
+        {% endif %}
+
+        <div class="form-group">
+          <label class="form-label-enhanced" for="username">Username or Email</label>
+          <div style="position: relative;">
+            <input 
+              id="username"
+              autofocus 
+              class="form-input-enhanced" 
+              name="username" 
+              placeholder="Enter your username or email" 
+              type="text" 
+              value="{{username}}"
+              required
+            >
+            <i class="bi bi-person input-icon"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label-enhanced" for="password">Password</label>
+          <div style="position: relative;">
+            <input 
+              id="password"
+              class="form-input-enhanced" 
+              name="password" 
+              placeholder="Enter your password" 
+              type="password"
+              required
+            >
+            <i class="bi bi-lock input-icon"></i>
+          </div>
+        </div>
+
+
+
+        <button type="submit" class="login-btn" id="loginBtn">
+          <i class="bi bi-box-arrow-in-right"></i>
+          Sign In
+        </button>
+
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
+
+        <div class="sso-section">
+          <div class="sso-buttons">
+            <button type="button" class="sso-btn okta" onclick="handleSSO('okta')">
+              <div class="sso-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#007dc1" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                </svg>
+              </div>
+              <span>Continue with SSO</span>
+            </button>
+          </div>
+      </form>
+
+      <div class="footer-text">
+        <p>Need help? <a href="#" onclick="showSignupInfo()">Contact administrator</a></p>
+      </div>
+    </div>
     <!-- Essential javascripts for application to work-->
     <script src="js/jquery-3.7.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/theme-manager.js"></script>
     <script type="text/javascript">
-      // Login Page Flipbox control
-      $('.login-content [data-toggle="flip"]').click(function() {
-      	$('.login-box').toggleClass('flipped');
-      	return false;
-      });
+      // Enhanced Login Page with Theme Integration
+      (function() {
+        'use strict';
+        
+        // Theme configuration matching your existing themes
+        const themes = {
+          'default': {
+            name: 'Default',
+            cssFile: 'css/themes/default.css',
+            primary: '#00695C',
+            primaryDark: '#004d42'
+          },
+          'blue': {
+            name: 'Blue Corporate',
+            cssFile: 'css/themes/blue.css',
+            primary: '#0d6efd',
+            primaryDark: '#0b5ed7'
+          },
+          'green': {
+            name: 'Green Nature',
+            cssFile: 'css/themes/green.css',
+            primary: '#198754',
+            primaryDark: '#157347'
+          },
+          'dark': {
+            name: 'Dark Mode',
+            cssFile: 'css/themes/dark.css',
+            primary: '#6f42c1',
+            primaryDark: '#5a32a3'
+          },
+          'purple': {
+            name: 'Purple',
+            cssFile: 'css/themes/purple.css',
+            primary: '#6f42c1',
+            primaryDark: '#5a32a3'
+          },
+          'orange': {
+            name: 'Orange',
+            cssFile: 'css/themes/orange.css',
+            primary: '#fd7e14',
+            primaryDark: '#e8590c'
+          },
+          'pink': {
+            name: 'Pink',
+            cssFile: 'css/themes/pink.css',
+            primary: '#d63384',
+            primaryDark: '#b02a5b'
+          },
+          'cyan': {
+            name: 'Cyan',
+            cssFile: 'css/themes/cyan.css',
+            primary: '#0dcaf0',
+            primaryDark: '#0aa2c0'
+          },
+          'stripe': {
+            name: 'Stripe Professional',
+            cssFile: 'css/themes/stripe.css',
+            primary: '#635bff',
+            primaryDark: '#5469d4'
+          }
+        };
+        
+        // Theme management functions
+        window.toggleThemeDropdown = function() {
+          const dropdown = document.getElementById('themeDropdown');
+          dropdown.classList.toggle('show');
+          
+          // Close dropdown when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!e.target.closest('.theme-selector')) {
+              dropdown.classList.remove('show');
+            }
+          }, { once: true });
+        };
+        
+        function applyTheme(themeName) {
+          const theme = themes[themeName];
+          if (!theme) return;
+          
+          // Update data-theme attribute
+          document.documentElement.setAttribute('data-theme', themeName);
+          
+          // Update theme CSS
+          let themeLink = document.getElementById('theme-css');
+          if (themeLink) {
+            themeLink.href = theme.cssFile;
+          }
+          
+          // Save theme preference
+          localStorage.setItem('selectedTheme', themeName);
+          
+          // Update active theme indicator
+          document.querySelectorAll('.theme-option').forEach(option => {
+            option.classList.remove('active');
+          });
+          
+          const activeOption = document.querySelector(`[data-theme="${themeName}"]`);
+          if (activeOption) {
+            activeOption.classList.add('active');
+          }
+          
+          // Close dropdown
+          document.getElementById('themeDropdown').classList.remove('show');
+          
+          // Dispatch theme change event
+          window.dispatchEvent(new CustomEvent('themeChanged', { 
+            detail: { theme: themeName, config: theme } 
+          }));
+        }
+        
+        // Load saved theme or default
+        function loadTheme() {
+          const savedTheme = localStorage.getItem('selectedTheme') || 'default';
+          applyTheme(savedTheme);
+        }
+        
+        window.showSignupInfo = function() {
+          showNotification('Please contact your system administrator to create a new account.', 'info');
+        };
+        
+        // SSO Integration Function
+        window.handleSSO = function(provider) {
+          const ssoBtn = document.querySelector(`.sso-btn.${provider}`);
+          if (ssoBtn) {
+            ssoBtn.classList.add('loading');
+            ssoBtn.disabled = true;
+          }
+          
+          showNotification(`Connecting to ${provider.charAt(0).toUpperCase() + provider.slice(1)}...`, 'info');
+          
+          // SSO provider configurations
+          const ssoConfigs = {
+            'google': {
+              url: '/auth/google',
+              name: 'Google',
+              description: 'Continue with your Google account'
+            },
+            'microsoft': {
+              url: '/auth/microsoft', 
+              name: 'Microsoft',
+              description: 'Continue with your Microsoft/Office 365 account'
+            },
+            'github': {
+              url: '/auth/github',
+              name: 'GitHub',
+              description: 'Continue with your GitHub developer account'
+            },
+            'okta': {
+              url: '/auth/okta',
+              name: 'Okta',
+              description: 'Continue with your enterprise Okta account'
+            }
+          };
+          
+          const config = ssoConfigs[provider];
+          if (!config) {
+            showNotification('Invalid SSO provider specified.', 'error');
+            if (ssoBtn) {
+              ssoBtn.classList.remove('loading');
+              ssoBtn.disabled = false;
+            }
+            return;
+          }
+          
+          // Add analytics tracking
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'sso_attempt', {
+              'provider': provider,
+              'timestamp': new Date().toISOString()
+            });
+          }
+          
+          // In a real implementation, you would redirect to your backend SSO endpoint
+          // For now, we'll simulate the process with enhanced feedback
+          setTimeout(() => {
+            // Example redirect (replace with your actual SSO endpoint)
+            // window.location.href = config.url;
+            
+            // For demo purposes, we'll show a more detailed message
+            showNotification(
+              `SSO integration ready for ${config.name}. Backend endpoint: ${config.url}. ${config.description}`, 
+              'info'
+            );
+            
+            // Show implementation guidance
+            console.group(`🔐 SSO Implementation Guide for ${config.name}`);
+            console.log(`Provider: ${provider}`);
+            console.log(`Endpoint: ${config.url}`);
+            console.log(`Description: ${config.description}`);
+            console.log(`To complete integration, implement this endpoint in your Rust backend.`);
+            console.groupEnd();
+            
+            if (ssoBtn) {
+              ssoBtn.classList.remove('loading');
+              ssoBtn.disabled = false;
+            }
+          }, 1500);
+          
+          // Enhanced error handling for network issues
+          const timeoutId = setTimeout(() => {
+            if (ssoBtn && ssoBtn.classList.contains('loading')) {
+              ssoBtn.classList.remove('loading');
+              ssoBtn.disabled = false;
+              showNotification('SSO connection timeout. Please try again or use regular login.', 'warning');
+            }
+          }, 10000);
+          
+          // Clear timeout if successful
+          window.ssoTimeouts = window.ssoTimeouts || {};
+          window.ssoTimeouts[provider] = timeoutId;
+        };
+        
+        // Enhanced form validation and UX
+        document.addEventListener('DOMContentLoaded', function() {
+          // Load theme on page load
+          loadTheme();
+          
+          // Theme option click handlers
+          document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', function() {
+              const themeName = this.getAttribute('data-theme');
+              applyTheme(themeName);
+            });
+          });
+          
+          const loginForm = document.querySelector('.login-form-enhanced');
+          const loginBtn = document.getElementById('loginBtn');
+          const inputs = document.querySelectorAll('.form-input-enhanced');
+          
+          // Add floating label effect and improved interactions
+          inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+              this.parentElement.classList.add('focused');
+              
+              // Add subtle animation to the icon
+              const icon = this.nextElementSibling;
+              if (icon && icon.classList.contains('input-icon')) {
+                icon.style.transform = 'translateY(-50%) scale(1.1)';
+              }
+            });
+            
+            input.addEventListener('blur', function() {
+              if (this.value === '') {
+                this.parentElement.classList.remove('focused');
+              }
+              
+              // Reset icon animation
+              const icon = this.nextElementSibling;
+              if (icon && icon.classList.contains('input-icon')) {
+                icon.style.transform = 'translateY(-50%) scale(1)';
+              }
+            });
+            
+            // Check if input has value on load
+            if (input.value !== '') {
+              input.parentElement.classList.add('focused');
+            }
+          });
+          
+          // Password visibility toggle with theme-aware styling
+          const passwordInputs = document.querySelectorAll('input[type="password"]');
+          passwordInputs.forEach(input => {
+            const toggleBtn = document.createElement('button');
+            toggleBtn.type = 'button';
+            toggleBtn.className = 'password-toggle';
+            toggleBtn.innerHTML = '<i class="bi bi-eye"></i>';
+            toggleBtn.style.cssText = `
+              position: absolute;
+              right: 16px;
+              top: 50%;
+              transform: translateY(-50%);
+              background: none;
+              border: none;
+              color: var(--theme-text-muted, #9ca3af);
+              cursor: pointer;
+              padding: 4px;
+              font-size: 16px;
+              z-index: 2;
+              transition: all 0.2s ease;
+              border-radius: 4px;
+            `;
+            
+            input.parentElement.style.position = 'relative';
+            input.parentElement.appendChild(toggleBtn);
+            
+            toggleBtn.addEventListener('mouseenter', function() {
+              this.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
+            });
+            
+            toggleBtn.addEventListener('mouseleave', function() {
+              this.style.backgroundColor = 'transparent';
+            });
+            
+            toggleBtn.addEventListener('click', function() {
+              const isPassword = input.type === 'password';
+              input.type = isPassword ? 'text' : 'password';
+              this.innerHTML = isPassword ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+              
+              // Add visual feedback
+              this.style.transform = 'translateY(-50%) scale(0.9)';
+              setTimeout(() => {
+                this.style.transform = 'translateY(-50%) scale(1)';
+              }, 150);
+            });
+          });
+          
+          // Enhanced form submission with loading state
+          if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+              const username = document.getElementById('username').value.trim();
+              const password = document.getElementById('password').value.trim();
+              
+              if (!username || !password) {
+                e.preventDefault();
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+              }
+              
+              // Add loading state
+              loginBtn.classList.add('loading');
+              loginBtn.disabled = true;
+              
+              // Show loading notification
+              showNotification('Signing you in...', 'info');
+              
+              // Allow form to submit normally, but with visual feedback
+              setTimeout(() => {
+                if (loginBtn) {
+                  loginBtn.classList.remove('loading');
+                  loginBtn.disabled = false;
+                }
+              }, 5000); // Reset after 5 seconds if no redirect
+            });
+          }
+          
+          // Enhanced keyboard navigation
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+              const themeDropdown = document.getElementById('themeDropdown');
+              if (themeDropdown.classList.contains('show')) {
+                themeDropdown.classList.remove('show');
+              }
+            }
+          });
+          
+          // Auto-fill detection and styling
+          setTimeout(() => {
+            inputs.forEach(input => {
+              if (input.value !== '') {
+                input.parentElement.classList.add('focused');
+                input.style.background = 'var(--theme-content-bg, #f8fafc)';
+              }
+            });
+          }, 100);
+          
+          // Theme change animations
+          window.addEventListener('themeChanged', function(e) {
+            const container = document.querySelector('.login-container');
+            container.style.transform = 'scale(0.98)';
+            container.style.opacity = '0.8';
+            
+            setTimeout(() => {
+              container.style.transform = 'scale(1)';
+              container.style.opacity = '1';
+            }, 150);
+            
+            showNotification(`Theme changed to ${e.detail.config.name}`, 'success');
+          });
+        });
+        
+        // Enhanced notification system
+        function showNotification(message, type = 'info') {
+          // Remove existing notifications
+          const existingNotification = document.querySelector('.notification');
+          if (existingNotification) {
+            existingNotification.remove();
+          }
+          
+          const notification = document.createElement('div');
+          notification.className = `notification notification-${type}`;
+          
+          const icons = {
+            success: 'bi-check-circle',
+            error: 'bi-exclamation-triangle',
+            info: 'bi-info-circle',
+            warning: 'bi-exclamation-triangle'
+          };
+          
+          const colors = {
+            success: { bg: '#f0fdf4', border: '#bbf7d0', text: '#16a34a' },
+            error: { bg: '#fef2f2', border: '#fecaca', text: '#dc2626' },
+            info: { bg: '#eff6ff', border: '#bfdbfe', text: '#2563eb' },
+            warning: { bg: '#fffbeb', border: '#fed7aa', text: '#d97706' }
+          };
+          
+          const color = colors[type] || colors.info;
+          
+          notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: ${color.bg};
+            border: 1px solid ${color.border};
+            color: ${color.text};
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            animation: notificationSlideIn 0.3s ease;
+          `;
+          
+          notification.innerHTML = `
+            <i class="bi ${icons[type]}"></i>
+            <span>${message}</span>
+            <button type="button" style="
+              background: none;
+              border: none;
+              color: ${color.text};
+              cursor: pointer;
+              padding: 0;
+              margin-left: 8px;
+              font-size: 16px;
+              opacity: 0.7;
+            " onclick="this.parentElement.remove()">
+              <i class="bi bi-x"></i>
+            </button>
+          `;
+          
+          document.body.appendChild(notification);
+          
+          // Auto-remove after delay
+          const delay = type === 'error' ? 8000 : 4000;
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.style.animation = 'notificationSlideOut 0.3s ease forwards';
+              setTimeout(() => notification.remove(), 300);
+            }
+          }, delay);
+        }
+        
+        // Add notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes notificationSlideIn {
+            from {
+              opacity: 0;
+              transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0);
+            }
+          }
+          
+          @keyframes notificationSlideOut {
+            from {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0);
+            }
+            to {
+              opacity: 0;
+              transform: translateX(-50%) translateY(-20px);
+            }
+          }
+        `;
+        document.head.appendChild(style);
+        
+      })();
     </script>
   </body>
 </html>

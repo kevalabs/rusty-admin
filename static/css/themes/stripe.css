@@ -1,0 +1,319 @@
+/* Stripe Theme - Inspired by Stripe's design system */
+:root {
+    /* Bootstrap Variables Override */
+    --bs-primary: #635bff;
+    --bs-primary-rgb: 99, 91, 255;
+    --bs-secondary: #6c757d;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success: #00d924;
+    --bs-success-rgb: 0, 217, 36;
+    --bs-danger: #df1b41;
+    --bs-danger-rgb: 223, 27, 65;
+    --bs-warning: #ffb946;
+    --bs-warning-rgb: 255, 185, 70;
+    --bs-info: #00d4ff;
+    --bs-info-rgb: 0, 212, 255;
+    --bs-light: #f7f9fa;
+    --bs-light-rgb: 247, 249, 250;
+    --bs-dark: #0a2540;
+    --bs-dark-rgb: 10, 37, 64;
+    
+    /* Custom App Variables - Stripe Style */
+    --theme-primary: #635bff;
+    --theme-primary-dark: #5469d4;
+    --theme-primary-light: #7c73ff;
+    --theme-secondary: #8898aa;
+    --theme-success: #00d924;
+    --theme-danger: #df1b41;
+    --theme-warning: #ffb946;
+    --theme-info: #00d4ff;
+    
+    /* Layout Colors - Stripe Style */
+    --theme-header-bg: #635bff;
+    --theme-header-text: #ffffff;
+    --theme-sidebar-bg: #f7f9fa;
+    --theme-sidebar-text: #525f7f;
+    --theme-sidebar-active: #eef4ff;
+    --theme-sidebar-active-text: #635bff;
+    --theme-sidebar-hover: #f6f9fc;
+    
+    /* Body and Background - Stripe Clean Style */
+    --theme-body-bg: #ffffff;
+    --theme-content-bg: #ffffff;
+    --theme-border-color: #e6ebf1;
+    
+    /* Text Colors - Stripe Typography */
+    --theme-text-primary: #0a2540;
+    --theme-text-secondary: #525f7f;
+    --theme-text-muted: #8898aa;
+    --theme-text-light: #ffffff;
+    
+    /* Stripe-specific colors */
+    --stripe-blue: #635bff;
+    --stripe-purple: #7c73ff;
+    --stripe-teal: #00d4ff;
+    --stripe-green: #00d924;
+    --stripe-orange: #ffb946;
+    --stripe-red: #df1b41;
+    --stripe-dark-blue: #0a2540;
+    --stripe-light-gray: #f7f9fa;
+    --stripe-medium-gray: #e6ebf1;
+    --stripe-text-gray: #525f7f;
+    
+    /* Logo */
+    --theme-logo-text: "Stripe Admin";
+    --theme-logo-font: "Inter";
+    --theme-logo-size: "24px";
+    
+    /* Login specific - Stripe gradient */
+    --theme-login-bg: linear-gradient(135deg, #635bff 0%, #7c73ff 50%, #00d4ff 100%);
+    
+    /* Shadows - Stripe style */
+    --stripe-shadow-sm: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+    --stripe-shadow-md: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --stripe-shadow-lg: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+    --stripe-shadow-xl: 0 25px 50px -12px rgba(50, 50, 93, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Override primary color throughout the app */
+.btn-primary {
+    background: linear-gradient(180deg, var(--theme-primary) 0%, var(--theme-primary-dark) 100%);
+    border-color: var(--theme-primary);
+    box-shadow: var(--stripe-shadow-sm);
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(180deg, var(--theme-primary-light) 0%, var(--theme-primary) 100%);
+    border-color: var(--theme-primary-light);
+    box-shadow: var(--stripe-shadow-md);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--stripe-shadow-sm);
+}
+
+.text-primary {
+    color: var(--theme-primary) !important;
+}
+
+.bg-primary {
+    background: var(--theme-primary) !important;
+}
+
+.border-primary {
+    border-color: var(--theme-primary) !important;
+}
+
+/* App Header - Stripe style */
+.app-header {
+    background: var(--theme-header-bg);
+    box-shadow: var(--stripe-shadow-sm);
+    border-bottom: 1px solid var(--stripe-medium-gray);
+}
+
+.app-header__logo {
+    color: var(--theme-header-text);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+/* Sidebar - Stripe clean style */
+.app-sidebar {
+    background-color: var(--theme-sidebar-bg);
+    border-right: 1px solid var(--stripe-medium-gray);
+    box-shadow: var(--stripe-shadow-sm);
+}
+
+.app-menu__item {
+    color: var(--theme-sidebar-text);
+    font-weight: 500;
+    border-radius: 8px;
+    margin: 2px 8px;
+    padding: 12px 16px;
+    transition: all 0.2s ease;
+}
+
+.app-menu__item:hover {
+    background-color: var(--theme-sidebar-hover);
+    color: var(--theme-sidebar-active-text);
+    transform: translateX(2px);
+}
+
+.app-menu__item.active {
+    background-color: var(--theme-sidebar-active);
+    color: var(--theme-sidebar-active-text);
+    box-shadow: var(--stripe-shadow-sm);
+}
+
+/* Cards and tiles - Stripe style */
+.tile {
+    background-color: var(--theme-content-bg);
+    border: 1px solid var(--stripe-medium-gray);
+    border-radius: 12px;
+    box-shadow: var(--stripe-shadow-sm);
+    color: var(--theme-text-primary);
+}
+
+.card {
+    background-color: var(--theme-content-bg);
+    border: 1px solid var(--stripe-medium-gray);
+    border-radius: 12px;
+    box-shadow: var(--stripe-shadow-sm);
+    color: var(--theme-text-primary);
+}
+
+/* Forms - Stripe style */
+.form-control {
+    background-color: var(--theme-content-bg);
+    border: 1.5px solid var(--stripe-medium-gray);
+    border-radius: 8px;
+    color: var(--theme-text-primary);
+    padding: 12px 16px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    background-color: var(--theme-content-bg);
+    border-color: var(--theme-primary);
+    color: var(--theme-text-primary);
+    box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-label {
+    color: var(--theme-text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Tables - Stripe style */
+.table {
+    color: var(--theme-text-primary);
+}
+
+.table th {
+    border-color: var(--stripe-medium-gray);
+    color: var(--theme-text-secondary);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.table td {
+    border-color: var(--stripe-medium-gray);
+    vertical-align: middle;
+}
+
+/* Dropdowns - Stripe style */
+.dropdown-menu {
+    background-color: var(--theme-content-bg);
+    border: 1px solid var(--stripe-medium-gray);
+    border-radius: 12px;
+    box-shadow: var(--stripe-shadow-lg);
+    padding: 8px;
+}
+
+.dropdown-item {
+    color: var(--theme-text-primary);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background-color: var(--theme-sidebar-hover);
+    color: var(--theme-primary);
+}
+
+/* Modals - Stripe style */
+.modal-content {
+    background-color: var(--theme-content-bg);
+    border: 1px solid var(--stripe-medium-gray);
+    border-radius: 16px;
+    box-shadow: var(--stripe-shadow-xl);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--stripe-medium-gray);
+    padding: 24px;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--stripe-medium-gray);
+    padding: 24px;
+}
+
+/* Badges and alerts - Stripe style */
+.badge {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.alert {
+    border-radius: 12px;
+    border: 1px solid var(--stripe-medium-gray);
+    box-shadow: var(--stripe-shadow-sm);
+}
+
+/* Progress bars - Stripe style */
+.progress {
+    background-color: var(--stripe-light-gray);
+    border-radius: 8px;
+    height: 8px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--theme-primary), var(--theme-primary-light));
+    border-radius: 8px;
+}
+
+/* Navigation tabs - Stripe style */
+.nav-tabs {
+    border-bottom: 2px solid var(--stripe-medium-gray);
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--theme-text-secondary);
+    font-weight: 600;
+    padding: 12px 24px;
+}
+
+.nav-tabs .nav-link.active {
+    background: none;
+    border-bottom-color: var(--theme-primary);
+    color: var(--theme-primary);
+}
+
+.nav-tabs .nav-link:hover {
+    border-bottom-color: var(--stripe-medium-gray);
+    color: var(--theme-text-primary);
+}
+
+/* Custom scrollbar - Stripe style */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--stripe-light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--stripe-medium-gray);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-text-muted);
+}

@@ -1,0 +1,105 @@
+/* Orange Theme */
+:root {
+    /* Bootstrap Variables Override */
+    --bs-primary: #fd7e14;
+    --bs-primary-rgb: 253, 126, 20;
+    --bs-secondary: #6c757d;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success: #198754;
+    --bs-success-rgb: 25, 135, 84;
+    --bs-danger: #dc3545;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-warning: #ffc107;
+    --bs-warning-rgb: 255, 193, 7;
+    --bs-info: #0dcaf0;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-light: #f8f9fa;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark: #212529;
+    --bs-dark-rgb: 33, 37, 41;
+    
+    /* Custom App Variables */
+    --theme-primary: #fd7e14;
+    --theme-primary-dark: #e8590c;
+    --theme-primary-light: #ff922b;
+    --theme-secondary: #6c757d;
+    --theme-success: #198754;
+    --theme-danger: #dc3545;
+    --theme-warning: #ffc107;
+    --theme-info: #0dcaf0;
+    
+    /* Layout Colors */
+    --theme-header-bg: #fd7e14;
+    --theme-header-text: #ffffff;
+    --theme-sidebar-bg: #f8f9fa;
+    --theme-sidebar-text: #495057;
+    --theme-sidebar-active: #fff4e6;
+    --theme-sidebar-active-text: #fd7e14;
+    --theme-sidebar-hover: #fff4e6;
+    
+    /* Body and Background */
+    --theme-body-bg: #ffffff;
+    --theme-content-bg: #ffffff;
+    --theme-border-color: #dee2e6;
+    
+    /* Text Colors */
+    --theme-text-primary: #212529;
+    --theme-text-secondary: #6c757d;
+    --theme-text-muted: #adb5bd;
+    --theme-text-light: #ffffff;
+    
+    /* Logo */
+    --theme-logo-text: "Orange Admin";
+    --theme-logo-font: "Niconne";
+    --theme-logo-size: "26px";
+    
+    /* Login specific */
+    --theme-login-bg: linear-gradient(135deg, #fd7e14 0%, #e8590c 100%);
+}
+
+/* Override primary color throughout the app */
+.btn-primary {
+    background-color: var(--theme-primary);
+    border-color: var(--theme-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--theme-primary-dark);
+    border-color: var(--theme-primary-dark);
+}
+
+.text-primary {
+    color: var(--theme-primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--theme-primary) !important;
+}
+
+.border-primary {
+    border-color: var(--theme-primary) !important;
+}
+
+/* App Header */
+.app-header {
+    background-color: var(--theme-header-bg);
+}
+
+.app-header__logo {
+    color: var(--theme-header-text);
+}
+
+/* Sidebar */
+.app-sidebar {
+    background-color: var(--theme-sidebar-bg);
+}
+
+.app-menu__item {
+    color: var(--theme-sidebar-text);
+}
+
+.app-menu__item:hover,
+.app-menu__item.active {
+    background-color: var(--theme-sidebar-active);
+    color: var(--theme-sidebar-active-text);
+}

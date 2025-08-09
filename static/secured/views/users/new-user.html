@@ -10,73 +10,173 @@
 
 {% block content %}
 <div class="row">
-    <div class="tile">
-        <div class="col-md-12">
+    <!-- Left Column - Form -->
+    <div class="col-12 col-lg-7 col-xl-8">
+        <div class="tile">
             <div class="tile-body">
-                <form class="form-horizontal">
-                    <div class="mb-3 row"></div>
-                    <div class="mb-3 row">
-                        <label class="form-label col-md-3">Name</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" placeholder="Enter full name">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="form-label col-md-3">Email</label>
-                        <div class="col-md-8">
-                            <input class="form-control col-md-8" type="email" placeholder="Enter email address">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="form-label col-md-3">Address</label>
-                        <div class="col-md-8">
-                            <textarea class="form-control" rows="4" placeholder="Enter your address"></textarea>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="form-label col-md-3">Gender</label>
-                        <div class="col-md-9">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="gender">Male
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="gender">Female
-                                </label>
+                <form id="newUserForm" novalidate>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Name <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="name" placeholder="Enter full name" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid name.
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="form-label col-md-3">Identity Proof</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="file">
+                        <div class="col-md-6">
+                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <input class="form-control" type="email" name="email" placeholder="Enter email address" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid email address.
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <div class="col-md-8 col-md-offset-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Role <span class="text-danger">*</span></label>
+                            <select class="form-select" name="role" required>
+                                <option value="">Select a role</option>
+                                <option value="admin">Admin</option>
+                                <option value="reporter">Reporter</option>
+                                <option value="maker">Maker</option>
+                                <option value="checker">Checker</option>
+                                <option value="verifier">Verifier</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a role.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Gender <span class="text-danger">*</span></label>
+                            <div class="mt-2">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                <div class="invalid-feedback d-block" id="gender-feedback" style="display: none !important;">
+                                    Please select a gender.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" name="address" rows="3" placeholder="Enter your address"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Identity Proof</label>
+                            <input class="form-control" type="file" name="identity_proof" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                            <div class="form-text">Accepted formats: PDF, JPG, PNG, DOC, DOCX (Max size: 5MB)</div>
+                        </div>
+                        <div class="col-12">
                             <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox">I accept the terms and conditions
+                                <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                                <label class="form-check-label" for="terms">
+                                    I accept the terms and conditions <span class="text-danger">*</span>
                                 </label>
+                                <div class="invalid-feedback">
+                                    You must agree to the terms and conditions.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="tile-footer">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-3">
-                        <button class="btn btn-primary" type="button"><i class="bi bi-check-circle-fill me-2"></i>Submit
-                        </button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="/users"><i
-                            class="bi bi-x-circle-fill me-2"></i>Cancel</a>
+                <div class="d-flex gap-2 justify-content-end">
+                    <button class="btn btn-primary" type="submit" form="newUserForm">
+                        <i class="bi bi-check-circle-fill me-2"></i>Submit
+                    </button>
+                    <a class="btn btn-secondary" href="/users">
+                        <i class="bi bi-x-circle-fill me-2"></i>Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right Column - Future Content -->
+    <div class="col-12 col-lg-5 col-xl-4">
+        <div class="tile">
+            <div class="tile-body">
+                <h5 class="mb-3">Additional Information</h5>
+                <div class="text-muted">
+                    <p><i class="bi bi-info-circle me-2"></i>This space is reserved for future enhancements.</p>
+                    <div class="border rounded p-3 bg-light">
+                        <h6>Form Guidelines:</h6>
+                        <ul class="mb-0 small">
+                            <li>All fields marked with <span class="text-danger">*</span> are required</li>
+                            <li>Email must be unique in the system</li>
+                            <li>Identity proof files should be clear and readable</li>
+                            <li>Maximum file size allowed is 5MB</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Form validation
+    (function() {
+        'use strict';
+        
+        const form = document.getElementById('newUserForm');
+        const genderFeedback = document.getElementById('gender-feedback');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            // Validate gender radio buttons
+            const genderInputs = document.querySelectorAll('input[name="gender"]');
+            const genderSelected = Array.from(genderInputs).some(input => input.checked);
+            
+            if (!genderSelected) {
+                genderFeedback.style.display = 'block';
+                genderInputs.forEach(input => input.classList.add('is-invalid'));
+            } else {
+                genderFeedback.style.display = 'none';
+                genderInputs.forEach(input => input.classList.remove('is-invalid'));
+            }
+            
+            // Add Bootstrap validation classes
+            form.classList.add('was-validated');
+            
+            // Check if form is valid
+            if (form.checkValidity() && genderSelected) {
+                // Form is valid, you can submit it here
+                console.log('Form is valid and ready to submit');
+                // Add your form submission logic here
+                // For example: form.submit(); or AJAX call
+            }
+        });
+        
+        // Real-time validation for gender
+        const genderInputs = document.querySelectorAll('input[name="gender"]');
+        genderInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.checked) {
+                    genderFeedback.style.display = 'none';
+                    genderInputs.forEach(inp => inp.classList.remove('is-invalid'));
+                }
+            });
+        });
+        
+        // File size validation
+        const fileInput = document.querySelector('input[type="file"]');
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file && file.size > 5 * 1024 * 1024) { // 5MB
+                alert('File size must be less than 5MB');
+                this.value = '';
+            }
+        });
+    })();
+</script>
 {% endblock %}

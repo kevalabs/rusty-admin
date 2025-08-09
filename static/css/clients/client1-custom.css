@@ -1,0 +1,44 @@
+/* Client 1 - Corporate Blue Custom Styles */
+:root {
+    --theme-primary: #1e40af;
+    --theme-secondary: #64748b;
+    --theme-header-bg: #1e40af;
+    --theme-sidebar-active: #1d4ed8;
+    --theme-logo-text: 'Acme Corporation';
+}
+
+/* Custom brand elements */
+.client-brand {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+}
+
+/* Custom button styles */
+.btn-client-primary {
+    background-color: #1e40af;
+    border-color: #1e40af;
+    color: white;
+}
+
+.btn-client-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* Client-specific dashboard widgets */
+.client-widget {
+    border-left: 4px solid #1e40af;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+/* Custom footer */
+.client-footer {
+    background-color: #1e40af;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.client-footer::after {
+    content: "© 2025 Acme Corporation. All rights reserved.";
+}

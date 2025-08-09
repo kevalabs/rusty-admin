@@ -1,0 +1,96 @@
+{
+  "themes": {
+    "default": {
+      "name": "default",
+      "display_name": "Default Theme",
+      "description": "Professional green theme with clean design",
+      "colors": {
+        "primary": "#00695C",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#0dcaf0",
+        "header_bg": "#00695C",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_active": "#005046"
+      },
+      "logo": {
+        "text": "Admin Panel",
+        "font_family": "Lato",
+        "font_size": "24px"
+      },
+      "css_file": "/css/themes/default.css"
+    },
+    "blue": {
+      "name": "blue",
+      "display_name": "Blue Corporate",
+      "description": "Professional banking theme inspired by Machbank",
+      "colors": {
+        "primary": "#1e3a8a",
+        "secondary": "#3b82f6",
+        "success": "#059669",
+        "danger": "#ed1c24",
+        "warning": "#f59e0b",
+        "info": "#0ea5e9",
+        "header_bg": "#1e3a8a",
+        "sidebar_bg": "#1e293b",
+        "sidebar_active": "#1e40af"
+      },
+      "logo": {
+        "text": "MBL Admin",
+        "font_family": "Lato",
+        "font_size": "24px"
+      },
+      "css_file": "/css/themes/blue.css"
+    },
+    "green": {
+      "name": "green",
+      "display_name": "Green Nature",
+      "description": "Fresh and natural green theme with gradients",
+      "colors": {
+        "primary": "#198754",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#20c997",
+        "header_bg": "#198754",
+        "sidebar_bg": "#f8fffe",
+        "sidebar_active": "#146c43"
+      },
+      "logo": {
+        "text": "Nature Admin",
+        "font_family": "Lato",
+        "font_size": "24px"
+      },
+      "css_file": "/css/themes/green.css"
+    }
+  },
+  "current_theme": "default",
+  "client_configs": {
+    "default_client": {
+      "theme": "default",
+      "logo": {
+        "text": "Admin Panel",
+        "type": "text"
+      }
+    },
+    "blue_client": {
+      "theme": "blue",
+      "logo": {
+        "text": "MBL Admin",
+        "type": "text"
+      },
+      "custom_css": "/css/clients/client2-custom.css"
+    },
+    "nature_client": {
+      "theme": "green",
+      "logo": {
+        "text": "Nature Admin",
+        "type": "text"
+      },
+      "custom_css": "/css/clients/client1-custom.css"
+    }
+  }
+}

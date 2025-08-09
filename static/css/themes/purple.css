@@ -1,0 +1,105 @@
+/* Purple Theme */
+:root {
+    /* Bootstrap Variables Override */
+    --bs-primary: #6f42c1;
+    --bs-primary-rgb: 111, 66, 193;
+    --bs-secondary: #6c757d;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success: #198754;
+    --bs-success-rgb: 25, 135, 84;
+    --bs-danger: #dc3545;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-warning: #ffc107;
+    --bs-warning-rgb: 255, 193, 7;
+    --bs-info: #0dcaf0;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-light: #f8f9fa;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark: #212529;
+    --bs-dark-rgb: 33, 37, 41;
+    
+    /* Custom App Variables */
+    --theme-primary: #6f42c1;
+    --theme-primary-dark: #5a32a3;
+    --theme-primary-light: #8f5fe8;
+    --theme-secondary: #6c757d;
+    --theme-success: #198754;
+    --theme-danger: #dc3545;
+    --theme-warning: #ffc107;
+    --theme-info: #0dcaf0;
+    
+    /* Layout Colors */
+    --theme-header-bg: #6f42c1;
+    --theme-header-text: #ffffff;
+    --theme-sidebar-bg: #f8f9fa;
+    --theme-sidebar-text: #495057;
+    --theme-sidebar-active: #f3f0ff;
+    --theme-sidebar-active-text: #6f42c1;
+    --theme-sidebar-hover: #f3f0ff;
+    
+    /* Body and Background */
+    --theme-body-bg: #ffffff;
+    --theme-content-bg: #ffffff;
+    --theme-border-color: #dee2e6;
+    
+    /* Text Colors */
+    --theme-text-primary: #212529;
+    --theme-text-secondary: #6c757d;
+    --theme-text-muted: #adb5bd;
+    --theme-text-light: #ffffff;
+    
+    /* Logo */
+    --theme-logo-text: "Purple Admin";
+    --theme-logo-font: "Niconne";
+    --theme-logo-size: "26px";
+    
+    /* Login specific */
+    --theme-login-bg: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+}
+
+/* Override primary color throughout the app */
+.btn-primary {
+    background-color: var(--theme-primary);
+    border-color: var(--theme-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--theme-primary-dark);
+    border-color: var(--theme-primary-dark);
+}
+
+.text-primary {
+    color: var(--theme-primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--theme-primary) !important;
+}
+
+.border-primary {
+    border-color: var(--theme-primary) !important;
+}
+
+/* App Header */
+.app-header {
+    background-color: var(--theme-header-bg);
+}
+
+.app-header__logo {
+    color: var(--theme-header-text);
+}
+
+/* Sidebar */
+.app-sidebar {
+    background-color: var(--theme-sidebar-bg);
+}
+
+.app-menu__item {
+    color: var(--theme-sidebar-text);
+}
+
+.app-menu__item:hover,
+.app-menu__item.active {
+    background-color: var(--theme-sidebar-active);
+    color: var(--theme-sidebar-active-text);
+}

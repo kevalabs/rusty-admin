@@ -1,0 +1,484 @@
+{% extends "secured/template/base.html" %}
+
+{% block title %}
+<div>
+    <h1><i class="bi bi-palette"></i> Theme Settings</h1>
+    <p>Customize your application's appearance and branding</p>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Left Column - Theme Selection & Preview -->
+    <div class="col-12 col-lg-8">
+        <!-- Current Theme Selection -->
+        <div class="tile">
+            <div class="tile-title-w-btn">
+                <h3 class="title">Theme Selection</h3>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-sm" id="saveThemeSettings">
+                        <i class="bi bi-floppy me-1"></i>Save Settings
+                    </button>
+                </div>
+            </div>
+            <div class="tile-body">
+                <div class="row g-4">
+                    <!-- Default Theme -->
+                    <div class="col-md-6">
+                        <div class="theme-card" data-theme="default">
+                            <div class="theme-preview">
+                                <div class="theme-header" style="background-color: #00695C;"></div>
+                                <div class="theme-sidebar" style="background-color: #f8f9fa;"></div>
+                                <div class="theme-content">
+                                    <div class="theme-widget" style="background-color: #00695C;"></div>
+                                    <div class="theme-widget" style="background-color: #6c757d;"></div>
+                                </div>
+                            </div>
+                            <div class="theme-info">
+                                <h6>Default Theme</h6>
+                                <p class="text-muted small">Professional and clean</p>
+                                <button class="btn btn-outline-primary btn-sm apply-theme" data-theme="default">
+                                    <i class="bi bi-check me-1"></i>Apply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blue Corporate Theme -->
+                    <div class="col-md-6">
+                        <div class="theme-card" data-theme="blue">
+                            <div class="theme-preview">
+                                <div class="theme-header" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);"></div>
+                                <div class="theme-sidebar" style="background: linear-gradient(180deg, #1e3a8a 0%, #1e293b 100%);"></div>
+                                <div class="theme-content">
+                                    <div class="theme-widget" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);"></div>
+                                    <div class="theme-widget" style="background: linear-gradient(135deg, #ed1c24 0%, #b91c1c 100%);"></div>
+                                </div>
+                            </div>
+                            <div class="theme-info">
+                                <h6>Blue Corporate</h6>
+                                <p class="text-muted small">Banking & corporate style</p>
+                                <button class="btn btn-outline-primary btn-sm apply-theme" data-theme="blue">
+                                    <i class="bi bi-check me-1"></i>Apply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Green Nature Theme -->
+                    <div class="col-md-6">
+                        <div class="theme-card" data-theme="green">
+                            <div class="theme-preview">
+                                <div class="theme-header" style="background: linear-gradient(135deg, #198754 0%, #20c997 100%);"></div>
+                                <div class="theme-sidebar" style="background-color: #f8fffe;"></div>
+                                <div class="theme-content">
+                                    <div class="theme-widget" style="background: linear-gradient(135deg, #198754 0%, #20c997 100%);"></div>
+                                    <div class="theme-widget" style="background-color: #6c757d;"></div>
+                                </div>
+                            </div>
+                            <div class="theme-info">
+                                <h6>Green Nature</h6>
+                                <p class="text-muted small">Fresh and natural</p>
+                                <button class="btn btn-outline-primary btn-sm apply-theme" data-theme="green">
+                                    <i class="bi bi-check me-1"></i>Apply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Theme Editor -->
+        <div class="tile mt-4">
+            <h3 class="tile-title">Custom Theme Editor</h3>
+            <div class="tile-body">
+                <form id="customThemeForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Theme Name</label>
+                            <input type="text" class="form-control" id="customThemeName" placeholder="My Custom Theme">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Logo Text</label>
+                            <input type="text" class="form-control" id="customLogoText" placeholder="Custom Logo">
+                        </div>
+                        
+                        <div class="col-12">
+                            <h6>Color Palette</h6>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <label class="form-label">Primary Color</label>
+                            <input type="color" class="form-control form-control-color" id="primaryColor" value="#00695C">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Secondary Color</label>
+                            <input type="color" class="form-control form-control-color" id="secondaryColor" value="#6c757d">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Header Background</label>
+                            <input type="color" class="form-control form-control-color" id="headerBgColor" value="#00695C">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Sidebar Background</label>
+                            <input type="color" class="form-control form-control-color" id="sidebarBgColor" value="#f8f9fa">
+                        </div>
+                        
+                        <div class="col-12">
+                            <button type="button" class="btn btn-primary" id="previewCustomTheme">
+                                <i class="bi bi-eye me-1"></i>Preview Custom Theme
+                            </button>
+                            <button type="button" class="btn btn-success" id="saveCustomTheme">
+                                <i class="bi bi-floppy me-1"></i>Save Custom Theme
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column - Logo & Branding Settings -->
+    <div class="col-12 col-lg-4">
+        <!-- Logo Settings -->
+        <div class="tile">
+            <h5 class="tile-title">Logo & Branding</h5>
+            <div class="tile-body">
+                <form id="logoForm">
+                    <div class="mb-3">
+                        <label class="form-label">Logo Type</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="logoType" id="textLogo" value="text" checked>
+                            <label class="form-check-label" for="textLogo">Text Logo</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="logoType" id="imageLogo" value="image">
+                            <label class="form-check-label" for="imageLogo">Image Logo</label>
+                        </div>
+                    </div>
+                    
+                    <div id="textLogoSettings">
+                        <div class="mb-3">
+                            <label class="form-label">Logo Text</label>
+                            <input type="text" class="form-control" id="logoText" value="Admin App">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Font Family</label>
+                            <select class="form-select" id="logoFont">
+                                <option value="Niconne">Niconne (Default)</option>
+                                <option value="Arial">Arial</option>
+                                <option value="Helvetica">Helvetica</option>
+                                <option value="Georgia">Georgia</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Font Size</label>
+                            <input type="range" class="form-range" id="logoSize" min="16" max="40" value="26">
+                            <div class="text-center"><span id="logoSizeValue">26px</span></div>
+                        </div>
+                    </div>
+                    
+                    <div id="imageLogoSettings" style="display: none;">
+                        <div class="mb-3">
+                            <label class="form-label">Logo Image URL</label>
+                            <input type="url" class="form-control" id="logoImageUrl" placeholder="https://example.com/logo.png">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Upload Logo</label>
+                            <input type="file" class="form-control" id="logoUpload" accept="image/*">
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary" id="updateLogo">
+                        <i class="bi bi-upload me-1"></i>Update Logo
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Client Configuration -->
+        <div class="tile mt-4">
+            <h5 class="tile-title">Client Configuration</h5>
+            <div class="tile-body">
+                <div class="mb-3">
+                    <label class="form-label">Client Name</label>
+                    <input type="text" class="form-control" id="clientName" placeholder="Enter client name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Export Configuration</label>
+                    <p class="text-muted small">Download theme configuration for deployment</p>
+                    <button type="button" class="btn btn-outline-primary btn-sm" id="exportConfig">
+                        <i class="bi bi-download me-1"></i>Export Config
+                    </button>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Import Configuration</label>
+                    <input type="file" class="form-control" id="importConfig" accept=".json">
+                </div>
+            </div>
+        </div>
+
+        <!-- Theme Preview -->
+        <div class="tile mt-4">
+            <h5 class="tile-title">Live Preview</h5>
+            <div class="tile-body">
+                <div class="theme-live-preview">
+                    <div class="mini-header" id="previewHeader">
+                        <div class="mini-logo" id="previewLogo">Admin App</div>
+                    </div>
+                    <div class="mini-sidebar" id="previewSidebar"></div>
+                    <div class="mini-content">
+                        <div class="mini-widget primary" id="previewWidget1"></div>
+                        <div class="mini-widget secondary" id="previewWidget2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Theme Settings Management
+    (function() {
+        'use strict';
+        
+        // Apply theme buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('apply-theme')) {
+                const themeName = e.target.getAttribute('data-theme');
+                window.ThemeManager.applyTheme(themeName);
+                updateActiveTheme(themeName);
+            }
+        });
+        
+        // Update active theme indicator
+        function updateActiveTheme(themeName) {
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.classList.remove('active');
+                if (card.getAttribute('data-theme') === themeName) {
+                    card.classList.add('active');
+                }
+            });
+        }
+        
+        // Logo type switching
+        document.querySelectorAll('input[name="logoType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const textSettings = document.getElementById('textLogoSettings');
+                const imageSettings = document.getElementById('imageLogoSettings');
+                
+                if (this.value === 'text') {
+                    textSettings.style.display = 'block';
+                    imageSettings.style.display = 'none';
+                } else {
+                    textSettings.style.display = 'none';
+                    imageSettings.style.display = 'block';
+                }
+            });
+        });
+        
+        // Logo size slider
+        const logoSizeSlider = document.getElementById('logoSize');
+        const logoSizeValue = document.getElementById('logoSizeValue');
+        logoSizeSlider.addEventListener('input', function() {
+            logoSizeValue.textContent = this.value + 'px';
+        });
+        
+        // Update logo
+        document.getElementById('updateLogo').addEventListener('click', function() {
+            const logoType = document.querySelector('input[name="logoType"]:checked').value;
+            
+            if (logoType === 'text') {
+                const text = document.getElementById('logoText').value;
+                window.ThemeManager.setCustomLogo(null, text);
+            } else {
+                const imageUrl = document.getElementById('logoImageUrl').value;
+                if (imageUrl) {
+                    window.ThemeManager.setCustomLogo(imageUrl);
+                }
+            }
+            
+            alert('Logo updated successfully!');
+        });
+        
+        // Custom theme preview
+        document.getElementById('previewCustomTheme').addEventListener('click', function() {
+            generateCustomThemePreview();
+        });
+        
+        // Generate custom theme preview
+        function generateCustomThemePreview() {
+            const primaryColor = document.getElementById('primaryColor').value;
+            const secondaryColor = document.getElementById('secondaryColor').value;
+            const headerBgColor = document.getElementById('headerBgColor').value;
+            const sidebarBgColor = document.getElementById('sidebarBgColor').value;
+            
+            // Update preview elements
+            document.getElementById('previewHeader').style.backgroundColor = headerBgColor;
+            document.getElementById('previewSidebar').style.backgroundColor = sidebarBgColor;
+            document.getElementById('previewWidget1').style.backgroundColor = primaryColor;
+            document.getElementById('previewWidget2').style.backgroundColor = secondaryColor;
+            
+            const logoText = document.getElementById('customLogoText').value || 'Custom Logo';
+            document.getElementById('previewLogo').textContent = logoText;
+        }
+        
+        // Export configuration
+        document.getElementById('exportConfig').addEventListener('click', function() {
+            const config = {
+                theme: window.ThemeManager.getCurrentTheme(),
+                client_name: document.getElementById('clientName').value,
+                logo: {
+                    text: document.getElementById('logoText').value,
+                    type: document.querySelector('input[name="logoType"]:checked').value
+                },
+                timestamp: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `theme-config-${config.client_name || 'default'}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+        
+        // Save theme settings
+        document.getElementById('saveThemeSettings').addEventListener('click', function() {
+            const settings = {
+                theme: window.ThemeManager.getCurrentTheme(),
+                logo: {
+                    text: document.getElementById('logoText').value,
+                    type: document.querySelector('input[name="logoType"]:checked').value,
+                    font: document.getElementById('logoFont').value,
+                    size: document.getElementById('logoSize').value + 'px'
+                }
+            };
+            
+            localStorage.setItem('themeSettings', JSON.stringify(settings));
+            alert('Theme settings saved successfully!');
+        });
+        
+        // Initialize current theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentTheme = window.ThemeManager.getCurrentTheme();
+            updateActiveTheme(currentTheme);
+            generateCustomThemePreview();
+        });
+        
+    })();
+</script>
+
+<style>
+    .theme-card {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .theme-card:hover {
+        border-color: var(--theme-primary);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .theme-card.active {
+        border-color: var(--theme-primary);
+        background-color: rgba(var(--theme-primary), 0.05);
+    }
+    
+    .theme-preview {
+        width: 100%;
+        height: 80px;
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 1rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .theme-header {
+        width: 100%;
+        height: 15px;
+    }
+    
+    .theme-sidebar {
+        width: 25%;
+        height: 65px;
+        float: left;
+        border-right: 1px solid #dee2e6;
+    }
+    
+    .theme-content {
+        width: 75%;
+        height: 65px;
+        float: right;
+        padding: 8px;
+        display: flex;
+        gap: 4px;
+    }
+    
+    .theme-widget {
+        flex: 1;
+        height: 100%;
+        border-radius: 2px;
+    }
+    
+    .theme-info h6 {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    
+    .theme-live-preview {
+        width: 100%;
+        height: 120px;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .mini-header {
+        width: 100%;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    .mini-sidebar {
+        width: 30%;
+        height: 95px;
+        float: left;
+    }
+    
+    .mini-content {
+        width: 70%;
+        height: 95px;
+        float: right;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .mini-widget {
+        flex: 1;
+        border-radius: 2px;
+    }
+    
+    .form-control-color {
+        width: 100%;
+        height: 40px;
+    }
+</style>
+{% endblock %}

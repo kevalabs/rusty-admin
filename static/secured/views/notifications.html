@@ -1,0 +1,541 @@
+{% extends "secured/template/base.html" %}
+
+{% block title %}
+<div>
+    <h1><i class="bi bi-bell"></i> Notifications</h1>
+    <p>Manage all your system notifications</p>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Left Column - Notifications List -->
+    <div class="col-12 col-lg-8">
+        <div class="tile">
+            <div class="tile-title-w-btn">
+                <h3 class="title">All Notifications</h3>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-sm" id="markAllRead">
+                        <i class="bi bi-check-all me-1"></i>Mark All Read
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" id="clearAll">
+                        <i class="bi bi-trash me-1"></i>Clear All
+                    </button>
+                </div>
+            </div>
+            <div class="tile-body p-0">
+                <!-- Filter Tabs -->
+                <ul class="nav nav-tabs" id="notificationTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-notifications" type="button" role="tab">
+                            All <span class="badge bg-secondary ms-1">12</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="unread-tab" data-bs-toggle="tab" data-bs-target="#unread-notifications" type="button" role="tab">
+                            Unread <span class="badge bg-danger ms-1">4</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="high-tab" data-bs-toggle="tab" data-bs-target="#high-priority" type="button" role="tab">
+                            High Priority <span class="badge bg-warning ms-1">2</span>
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="notificationTabContent">
+                    <!-- All Notifications -->
+                    <div class="tab-pane fade show active" id="all-notifications" role="tabpanel">
+                        <div class="notification-list">
+                            <!-- High Priority Notification -->
+                            <div class="notification-item unread high-priority" data-priority="high" data-date="2025-06-11">
+                                <div class="notification-icon bg-danger">
+                                    <i class="bi bi-exclamation-triangle text-white"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-header">
+                                        <h6 class="notification-title">Security Alert</h6>
+                                        <div class="notification-meta">
+                                            <span class="badge bg-danger">High Priority</span>
+                                            <small class="text-muted">5 minutes ago</small>
+                                        </div>
+                                    </div>
+                                    <p class="notification-message">Unusual login attempt detected from unknown IP address. Please review your account security.</p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-outline-primary">View Details</button>
+                                        <button class="btn btn-sm btn-outline-secondary mark-read">Mark as Read</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Medium Priority Notification -->
+                            <div class="notification-item unread medium-priority" data-priority="medium" data-date="2025-06-11">
+                                <div class="notification-icon bg-warning">
+                                    <i class="bi bi-envelope text-white"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-header">
+                                        <h6 class="notification-title">System Update Available</h6>
+                                        <div class="notification-meta">
+                                            <span class="badge bg-warning">Medium Priority</span>
+                                            <small class="text-muted">1 hour ago</small>
+                                        </div>
+                                    </div>
+                                    <p class="notification-message">A new system update is available. Please schedule maintenance for installation.</p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-outline-primary">Schedule Update</button>
+                                        <button class="btn btn-sm btn-outline-secondary mark-read">Mark as Read</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Low Priority Notification -->
+                            <div class="notification-item read low-priority" data-priority="low" data-date="2025-06-11">
+                                <div class="notification-icon bg-success">
+                                    <i class="bi bi-check-circle text-white"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-header">
+                                        <h6 class="notification-title">Backup Completed</h6>
+                                        <div class="notification-meta">
+                                            <span class="badge bg-success">Low Priority</span>
+                                            <small class="text-muted">2 hours ago</small>
+                                        </div>
+                                    </div>
+                                    <p class="notification-message">Daily backup process completed successfully. All data has been secured.</p>
+                                </div>
+                            </div>
+
+                            <!-- Information Notification -->
+                            <div class="notification-item unread info-priority" data-priority="info" data-date="2025-06-10">
+                                <div class="notification-icon bg-info">
+                                    <i class="bi bi-info-circle text-white"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-header">
+                                        <h6 class="notification-title">New User Registration</h6>
+                                        <div class="notification-meta">
+                                            <span class="badge bg-info">Info</span>
+                                            <small class="text-muted">Yesterday</small>
+                                        </div>
+                                    </div>
+                                    <p class="notification-message">New user "Jane Smith" has registered and is pending approval.</p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-outline-primary">Review User</button>
+                                        <button class="btn btn-sm btn-outline-secondary mark-read">Mark as Read</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- High Priority Notification -->
+                            <div class="notification-item unread high-priority" data-priority="high" data-date="2025-06-10">
+                                <div class="notification-icon bg-danger">
+                                    <i class="bi bi-shield-exclamation text-white"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-header">
+                                        <h6 class="notification-title">Failed Login Attempts</h6>
+                                        <div class="notification-meta">
+                                            <span class="badge bg-danger">High Priority</span>
+                                            <small class="text-muted">Yesterday</small>
+                                        </div>
+                                    </div>
+                                    <p class="notification-message">Multiple failed login attempts detected for administrator account. Account temporarily locked.</p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-outline-primary">View Logs</button>
+                                        <button class="btn btn-sm btn-outline-secondary mark-read">Mark as Read</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- More notifications... -->
+                            <div class="notification-item read low-priority" data-priority="low" data-date="2025-06-09">
+                                <div class="notification-icon bg-primary">
+                                    <i class="bi bi-person-plus text-white"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-header">
+                                        <h6 class="notification-title">User Profile Updated</h6>
+                                        <div class="notification-meta">
+                                            <span class="badge bg-primary">Info</span>
+                                            <small class="text-muted">2 days ago</small>
+                                        </div>
+                                    </div>
+                                    <p class="notification-message">John Doe updated his profile information and contact details.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="d-flex justify-content-center mt-3 p-3">
+                            <nav>
+                                <ul class="pagination pagination-sm">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Unread Notifications -->
+                    <div class="tab-pane fade" id="unread-notifications" role="tabpanel">
+                        <div class="notification-list">
+                            <!-- Only unread notifications will be shown here -->
+                            <div class="text-center p-4">
+                                <i class="bi bi-funnel fs-1 text-muted"></i>
+                                <p class="text-muted mt-2">Filtered view showing only unread notifications</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- High Priority Notifications -->
+                    <div class="tab-pane fade" id="high-priority" role="tabpanel">
+                        <div class="notification-list">
+                            <!-- Only high priority notifications will be shown here -->
+                            <div class="text-center p-4">
+                                <i class="bi bi-exclamation-triangle fs-1 text-warning"></i>
+                                <p class="text-muted mt-2">Filtered view showing only high priority notifications</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column - Notification Settings & Stats -->
+    <div class="col-12 col-lg-4">
+        <!-- Notification Stats -->
+        <div class="tile">
+            <h5 class="tile-title">Notification Summary</h5>
+            <div class="tile-body">
+                <div class="row text-center">
+                    <div class="col-6 mb-3">
+                        <div class="widget-small danger">
+                            <div class="info">
+                                <h4>2</h4>
+                                <p><small>High Priority</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="widget-small warning">
+                            <div class="info">
+                                <h4>3</h4>
+                                <p><small>Medium Priority</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="widget-small info">
+                            <div class="info">
+                                <h4>4</h4>
+                                <p><small>Unread</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="widget-small success">
+                            <div class="info">
+                                <h4>8</h4>
+                                <p><small>Read</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="tile mt-4">
+            <h5 class="tile-title">Quick Actions</h5>
+            <div class="tile-body">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-gear me-1"></i>Notification Settings
+                    </button>
+                    <button class="btn btn-outline-info btn-sm">
+                        <i class="bi bi-download me-1"></i>Export Notifications
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-archive me-1"></i>Archive Old Notifications
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Priority Legend -->
+        <div class="tile mt-4">
+            <h5 class="tile-title">Priority Legend</h5>
+            <div class="tile-body">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge bg-danger me-2">High</span>
+                    <small>Requires immediate attention</small>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge bg-warning me-2">Medium</span>
+                    <small>Needs attention soon</small>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge bg-success me-2">Low</span>
+                    <small>Informational only</small>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-info me-2">Info</span>
+                    <small>General information</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Notification management functionality
+    (function() {
+        'use strict';
+        
+        // Mark individual notification as read
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('mark-read') || e.target.closest('.mark-read')) {
+                const button = e.target.classList.contains('mark-read') ? e.target : e.target.closest('.mark-read');
+                const notificationItem = button.closest('.notification-item');
+                
+                notificationItem.classList.remove('unread');
+                notificationItem.classList.add('read');
+                
+                const actions = notificationItem.querySelector('.notification-actions');
+                if (actions) {
+                    actions.remove();
+                }
+                
+                updateCounts();
+            }
+        });
+        
+        // Mark all notifications as read
+        document.getElementById('markAllRead').addEventListener('click', function() {
+            const unreadNotifications = document.querySelectorAll('.notification-item.unread');
+            
+            unreadNotifications.forEach(notification => {
+                notification.classList.remove('unread');
+                notification.classList.add('read');
+                
+                const actions = notification.querySelector('.notification-actions');
+                if (actions) {
+                    actions.remove();
+                }
+            });
+            
+            updateCounts();
+            alert('All notifications marked as read!');
+        });
+        
+        // Clear all notifications
+        document.getElementById('clearAll').addEventListener('click', function() {
+            if (confirm('Are you sure you want to clear all notifications? This action cannot be undone.')) {
+                document.querySelector('.notification-list').innerHTML = 
+                    '<div class="text-center p-5"><i class="bi bi-inbox fs-1 text-muted"></i><p class="text-muted mt-2">No notifications</p></div>';
+                
+                updateCounts();
+                alert('All notifications cleared!');
+            }
+        });
+        
+        // Update notification counts
+        function updateCounts() {
+            const allNotifications = document.querySelectorAll('.notification-item').length;
+            const unreadNotifications = document.querySelectorAll('.notification-item.unread').length;
+            const highPriorityNotifications = document.querySelectorAll('.notification-item.high-priority').length;
+            
+            // Update tab badges
+            document.querySelector('#all-tab .badge').textContent = allNotifications;
+            document.querySelector('#unread-tab .badge').textContent = unreadNotifications;
+            document.querySelector('#high-tab .badge').textContent = highPriorityNotifications;
+            
+            // Update stats widgets
+            const widgets = document.querySelectorAll('.widget-small .info h4');
+            if (widgets.length >= 4) {
+                widgets[2].textContent = unreadNotifications; // Unread count
+                widgets[3].textContent = allNotifications - unreadNotifications; // Read count
+            }
+        }
+        
+        // Filter notifications by tab
+        document.addEventListener('click', function(e) {
+            if (e.target.hasAttribute('data-bs-toggle') && e.target.getAttribute('data-bs-toggle') === 'tab') {
+                const target = e.target.getAttribute('data-bs-target');
+                
+                if (target === '#unread-notifications') {
+                    filterNotifications('unread');
+                } else if (target === '#high-priority') {
+                    filterNotifications('high-priority');
+                } else {
+                    showAllNotifications();
+                }
+            }
+        });
+        
+        function filterNotifications(filterType) {
+            const allNotifications = document.querySelectorAll('#all-notifications .notification-item');
+            const targetContainer = document.querySelector(`#${filterType.replace('-', '-')} .notification-list`);
+            
+            // Clear target container
+            targetContainer.innerHTML = '';
+            
+            // Clone and append matching notifications
+            allNotifications.forEach(notification => {
+                if (notification.classList.contains(filterType)) {
+                    const clone = notification.cloneNode(true);
+                    targetContainer.appendChild(clone);
+                }
+            });
+            
+            if (targetContainer.children.length === 0) {
+                targetContainer.innerHTML = 
+                    '<div class="text-center p-5"><i class="bi bi-inbox fs-1 text-muted"></i><p class="text-muted mt-2">No notifications found</p></div>';
+            }
+        }
+        
+        function showAllNotifications() {
+            // All notifications are already in the main tab
+        }
+        
+        // Sort notifications by date or priority
+        function sortNotifications(sortBy) {
+            const container = document.querySelector('.notification-list');
+            const notifications = Array.from(container.querySelectorAll('.notification-item'));
+            
+            notifications.sort((a, b) => {
+                if (sortBy === 'date') {
+                    const dateA = new Date(a.getAttribute('data-date'));
+                    const dateB = new Date(b.getAttribute('data-date'));
+                    return dateB - dateA; // Newest first
+                } else if (sortBy === 'priority') {
+                    const priorityOrder = { 'high': 4, 'medium': 3, 'low': 2, 'info': 1 };
+                    const priorityA = priorityOrder[a.getAttribute('data-priority')] || 0;
+                    const priorityB = priorityOrder[b.getAttribute('data-priority')] || 0;
+                    return priorityB - priorityA; // Highest priority first
+                }
+            });
+            
+            // Clear container and re-append sorted notifications
+            container.innerHTML = '';
+            notifications.forEach(notification => container.appendChild(notification));
+        }
+        
+        // Initialize with priority sorting
+        sortNotifications('priority');
+    })();
+</script>
+
+<style>
+    .notification-list {
+        max-height: 700px;
+        overflow-y: auto;
+    }
+    
+    .notification-item {
+        display: flex;
+        padding: 1rem;
+        border-bottom: 1px solid #e9ecef;
+        transition: background-color 0.2s ease;
+    }
+    
+    .notification-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .notification-item.unread {
+        background-color: #f0f8ff;
+        border-left: 4px solid #007bff;
+    }
+    
+    .notification-item.read {
+        opacity: 0.8;
+    }
+    
+    .notification-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .notification-content {
+        flex: 1;
+    }
+    
+    .notification-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+    }
+    
+    .notification-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        color: #333;
+    }
+    
+    .notification-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .notification-message {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    .notification-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .nav-tabs .nav-link {
+        color: #6c757d;
+        border: none;
+        border-bottom: 2px solid transparent;
+    }
+    
+    .nav-tabs .nav-link.active {
+        color: #007bff;
+        border-bottom-color: #007bff;
+        background-color: transparent;
+    }
+    
+    .widget-small .info {
+        padding: 0.75rem;
+        text-align: center;
+    }
+    
+    .widget-small .info h4 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+    
+    .widget-small.danger { background-color: #dc3545; color: white; }
+    .widget-small.warning { background-color: #ffc107; color: white; }
+    .widget-small.info { background-color: #17a2b8; color: white; }
+    .widget-small.success { background-color: #28a745; color: white; }
+</style>
+{% endblock %}

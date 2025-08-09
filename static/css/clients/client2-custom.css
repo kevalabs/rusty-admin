@@ -1,0 +1,52 @@
+/* Client 2 - Green Solutions Custom Styles */
+:root {
+    --theme-primary: #059669;
+    --theme-secondary: #6b7280;
+    --theme-header-bg: #059669;
+    --theme-sidebar-active: #047857;
+    --theme-logo-text: 'Green Solutions Inc';
+}
+
+/* Eco-friendly brand elements */
+.client-brand {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+/* Nature-inspired button styles */
+.btn-client-primary {
+    background-color: #059669;
+    border-color: #059669;
+    color: white;
+    border-radius: 20px;
+}
+
+.btn-client-primary:hover {
+    background-color: #047857;
+    border-color: #047857;
+}
+
+/* Organic shapes and styling */
+.client-widget {
+    border-left: 4px solid #059669;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border-radius: 12px;
+}
+
+/* Green footer */
+.client-footer {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+}
+
+.client-footer::after {
+    content: "© 2025 Green Solutions Inc. Sustainable Technology for a Better Future.";
+}
+
+/* Sustainability icons */
+.sustainability-icon::before {
+    content: "🌱";
+    margin-right: 5px;
+}

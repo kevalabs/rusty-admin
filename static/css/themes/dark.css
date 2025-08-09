@@ -1,0 +1,181 @@
+/* Dark Theme */
+:root {
+    /* Bootstrap Variables Override */
+    --bs-primary: #6f42c1;
+    --bs-primary-rgb: 111, 66, 193;
+    --bs-secondary: #6c757d;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success: #198754;
+    --bs-success-rgb: 25, 135, 84;
+    --bs-danger: #dc3545;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-warning: #ffc107;
+    --bs-warning-rgb: 255, 193, 7;
+    --bs-info: #0dcaf0;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-light: #f8f9fa;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark: #212529;
+    --bs-dark-rgb: 33, 37, 41;
+    
+    /* Custom App Variables */
+    --theme-primary: #6f42c1;
+    --theme-primary-dark: #5a32a3;
+    --theme-primary-light: #8f5fe8;
+    --theme-secondary: #6c757d;
+    --theme-success: #198754;
+    --theme-danger: #dc3545;
+    --theme-warning: #ffc107;
+    --theme-info: #0dcaf0;
+    
+    /* Layout Colors - Dark Mode */
+    --theme-header-bg: #212529;
+    --theme-header-text: #ffffff;
+    --theme-sidebar-bg: #343a40;
+    --theme-sidebar-text: #adb5bd;
+    --theme-sidebar-active: #495057;
+    --theme-sidebar-active-text: #ffffff;
+    --theme-sidebar-hover: #495057;
+    
+    /* Body and Background - Dark Mode */
+    --theme-body-bg: #212529;
+    --theme-content-bg: #343a40;
+    --theme-border-color: #495057;
+    
+    /* Text Colors - Dark Mode */
+    --theme-text-primary: #ffffff;
+    --theme-text-secondary: #adb5bd;
+    --theme-text-muted: #6c757d;
+    --theme-text-light: #ffffff;
+    
+    /* Logo */
+    --theme-logo-text: "Dark Admin";
+    --theme-logo-font: "Niconne";
+    --theme-logo-size: "26px";
+    
+    /* Login specific */
+    --theme-login-bg: linear-gradient(135deg, #212529 0%, #343a40 100%);
+}
+
+/* Dark mode body styling */
+body {
+    background-color: var(--theme-body-bg);
+    color: var(--theme-text-primary);
+}
+
+/* Override primary color throughout the app */
+.btn-primary {
+    background-color: var(--theme-primary);
+    border-color: var(--theme-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--theme-primary-dark);
+    border-color: var(--theme-primary-dark);
+}
+
+.text-primary {
+    color: var(--theme-primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--theme-primary) !important;
+}
+
+.border-primary {
+    border-color: var(--theme-primary) !important;
+}
+
+/* App Header */
+.app-header {
+    background-color: var(--theme-header-bg);
+    border-bottom: 1px solid var(--theme-border-color);
+}
+
+.app-header__logo {
+    color: var(--theme-header-text);
+}
+
+/* Sidebar */
+.app-sidebar {
+    background-color: var(--theme-sidebar-bg);
+    border-right: 1px solid var(--theme-border-color);
+}
+
+.app-menu__item {
+    color: var(--theme-sidebar-text);
+}
+
+.app-menu__item:hover,
+.app-menu__item.active {
+    background-color: var(--theme-sidebar-active);
+    color: var(--theme-sidebar-active-text);
+}
+
+/* Cards and tiles */
+.tile {
+    background-color: var(--theme-content-bg);
+    border: 1px solid var(--theme-border-color);
+    color: var(--theme-text-primary);
+}
+
+.card {
+    background-color: var(--theme-content-bg);
+    border: 1px solid var(--theme-border-color);
+    color: var(--theme-text-primary);
+}
+
+/* Forms */
+.form-control {
+    background-color: var(--theme-content-bg);
+    border-color: var(--theme-border-color);
+    color: var(--theme-text-primary);
+}
+
+.form-control:focus {
+    background-color: var(--theme-content-bg);
+    border-color: var(--theme-primary);
+    color: var(--theme-text-primary);
+    box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
+}
+
+.form-label {
+    color: var(--theme-text-secondary);
+}
+
+/* Tables */
+.table {
+    color: var(--theme-text-primary);
+}
+
+.table-dark {
+    --bs-table-bg: var(--theme-content-bg);
+}
+
+/* Dropdowns */
+.dropdown-menu {
+    background-color: var(--theme-content-bg);
+    border: 1px solid var(--theme-border-color);
+}
+
+.dropdown-item {
+    color: var(--theme-text-primary);
+}
+
+.dropdown-item:hover {
+    background-color: var(--theme-sidebar-hover);
+}
+
+/* Modals */
+.modal-content {
+    background-color: var(--theme-content-bg);
+    border: 1px solid var(--theme-border-color);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--theme-border-color);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--theme-border-color);
+}

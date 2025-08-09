@@ -1,0 +1,221 @@
+{
+  "themes": {
+    "default": {
+      "name": "default",
+      "display_name": "Default Theme",
+      "description": "Clean and professional default theme",
+      "colors": {
+        "primary": "#00695C",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#0dcaf0",
+        "header_bg": "#00695C",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_active": "#005046"
+      },
+      "logo": {
+        "text": "Admin App",
+        "font_family": "Niconne",
+        "font_size": "26px"
+      },
+      "css_file": "/css/themes/default.css"
+    },
+    "blue": {
+      "name": "blue",
+      "display_name": "Blue Corporate",
+      "description": "Modern blue corporate theme",
+      "colors": {
+        "primary": "#0d6efd",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#0dcaf0",
+        "header_bg": "#0d6efd",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_active": "#0b5ed7"
+      },
+      "logo": {
+        "text": "Blue Corp",
+        "font_family": "Niconne",
+        "font_size": "26px"
+      },
+      "css_file": "/css/themes/blue.css"
+    },
+    "green": {
+      "name": "green",
+      "display_name": "Green Nature",
+      "description": "Fresh green theme inspired by nature",
+      "colors": {
+        "primary": "#198754",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#fd7e14",
+        "info": "#20c997",
+        "header_bg": "#198754",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_active": "#157347"
+      },
+      "logo": {
+        "text": "Green Nature",
+        "font_family": "Niconne",
+        "font_size": "26px"
+      },
+      "css_file": "/css/themes/green.css"
+    },
+    "dark": {
+      "name": "dark",
+      "display_name": "Dark Mode",
+      "description": "Dark theme for low-light environments",
+      "colors": {
+        "primary": "#6f42c1",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#0dcaf0",
+        "header_bg": "#212529",
+        "sidebar_bg": "#343a40",
+        "sidebar_active": "#495057"
+      },
+      "logo": {
+        "text": "Dark Admin",
+        "font_family": "Niconne",
+        "font_size": "26px"
+      },
+      "css_file": "/css/themes/dark.css"
+    },
+    "purple": {
+      "name": "purple",
+      "display_name": "Purple Elegance",
+      "description": "Elegant purple theme for creative workflows",
+      "colors": {
+        "primary": "#6f42c1",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#0dcaf0",
+        "header_bg": "#6f42c1",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_active": "#5a32a3"
+      },
+      "logo": {
+        "text": "Purple Admin",
+        "font_family": "Niconne",
+        "font_size": "26px"
+      },
+      "css_file": "/css/themes/purple.css"
+    },
+    "orange": {
+      "name": "orange",
+      "display_name": "Orange Energy",
+      "description": "Vibrant orange theme for dynamic teams",
+      "colors": {
+        "primary": "#fd7e14",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#0dcaf0",
+        "header_bg": "#fd7e14",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_active": "#e8590c"
+      },
+      "logo": {
+        "text": "Orange Admin",
+        "font_family": "Niconne",
+        "font_size": "26px"
+      },
+      "css_file": "/css/themes/orange.css"
+    },
+    "pink": {
+      "name": "pink",
+      "display_name": "Pink Creative",
+      "description": "Playful pink theme for creative industries",
+      "colors": {
+        "primary": "#d63384",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#0dcaf0",
+        "header_bg": "#d63384",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_active": "#b02a5b"
+      },
+      "logo": {
+        "text": "Pink Admin",
+        "font_family": "Niconne",
+        "font_size": "26px"
+      },
+      "css_file": "/css/themes/pink.css"
+    },
+    "cyan": {
+      "name": "cyan",
+      "display_name": "Cyan Fresh",
+      "description": "Fresh cyan theme for modern applications",
+      "colors": {
+        "primary": "#0dcaf0",
+        "secondary": "#6c757d",
+        "success": "#198754",
+        "danger": "#dc3545",
+        "warning": "#ffc107",
+        "info": "#0dcaf0",
+        "header_bg": "#0dcaf0",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_active": "#0aa2c0"
+      },
+      "logo": {
+        "text": "Cyan Admin",
+        "font_family": "Niconne",
+        "font_size": "26px"
+      },
+      "css_file": "/css/themes/cyan.css"
+    },
+    "stripe": {
+      "name": "stripe",
+      "display_name": "Stripe Professional",
+      "description": "Clean and professional theme inspired by Stripe's design system",
+      "colors": {
+        "primary": "#635bff",
+        "secondary": "#8898aa",
+        "success": "#00d924",
+        "danger": "#df1b41",
+        "warning": "#ffb946",
+        "info": "#00d4ff",
+        "header_bg": "#635bff",
+        "sidebar_bg": "#f7f9fa",
+        "sidebar_active": "#5469d4"
+      },
+      "logo": {
+        "text": "Stripe Admin",
+        "font_family": "Inter",
+        "font_size": "24px"
+      },
+      "css_file": "/css/themes/stripe.css"
+    }
+  },
+  "current_theme": "default",
+  "client_configs": {
+    "example_client_1": {
+      "theme": "blue",
+      "logo": {
+        "text": "Client Corp",
+        "image_url": "/images/logos/client1-logo.png"
+      },
+      "custom_css": "/css/clients/client1-custom.css"
+    },
+    "example_client_2": {
+      "theme": "green",
+      "logo": {
+        "text": "Green Solutions",
+        "image_url": "/images/logos/client2-logo.png"
+      },
+      "custom_css": "/css/clients/client2-custom.css"
+    }
+  }
+}
